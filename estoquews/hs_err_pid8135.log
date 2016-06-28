@@ -1,0 +1,808 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00d4170f, pid=8135, tid=3187338096
+#
+# JRE version: 6.0_17-b04
+# Java VM: Java HotSpot(TM) Server VM (14.3-b01 mixed mode linux-x86 )
+# Problematic frame:
+# C  [libc.so.6+0x13770f]
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0xbb63bc00):  JavaThread "HDScanner" [_thread_in_native, id=8179, stack(0xbdf5e000,0xbdfaf000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0xc1c11000
+
+Registers:
+EAX=0xc1c0f000, EBX=0x00d65a40, ECX=0x000019da, EDX=0xc329d6c0
+ESP=0xbdfad6d4, EBP=0xbdfad708, ESI=0xc1c0efce, EDI=0x00001fe0
+EIP=0x00d4170f, CR2=0xc1c11000, EFLAGS=0x00010202
+
+Top of Stack: (sp=0xbdfad6d4)
+0xbdfad6d4:   c321fd58 f6b607bc f6b5bdf6 c329d6ba
+0xbdfad6e4:   c1c0effc 00003a00 d77e64e8 00001e00
+0xbdfad6f4:   00003a00 00000000 f6b607bc 00000000
+0xbdfad704:   c32630e0 bdfad728 f6b5c0cd c32630e0
+0xbdfad714:   c323edb0 00000001 f6b607bc bdfad76c
+0xbdfad724:   bb63bc00 bdfad748 f6b532d6 c32630e0
+0xbdfad734:   00000000 c4461248 00000000 c4460d18
+0xbdfad744:   ffffffff bdfad778 f3b9ad10 bb63bd10 
+
+Instructions: (pc=0x00d4170f)
+0x00d416ff:   0f 7f 5c 3a f0 72 30 66 0f 6f 54 38 10 83 e9 20
+0x00d4170f:   66 0f 6f 5c 38 20 66 0f 6f cb 66 0f 3a 0f da 02 
+
+Stack: [0xbdf5e000,0xbdfaf000],  sp=0xbdfad6d4,  free space=317k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libc.so.6+0x13770f]
+C  [libzip.so+0xc0cd]  ZIP_GetNextEntry+0x5d
+C  [libzip.so+0x32d6]  Java_java_util_zip_ZipFile_getNextEntry+0x26
+J  java.util.zip.ZipFile.getNextEntry(JI)J
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J  java.util.zip.ZipFile.getNextEntry(JI)J
+J  java.util.zip.ZipFile$2.nextElement()Ljava/util/zip/ZipEntry;
+J  org.jboss.virtual.plugins.context.zip.ZipEntryContext.initEntries()V
+J  org.jboss.virtual.plugins.context.zip.ZipEntryContext.checkIfModified()V
+J  org.jboss.virtual.plugins.context.AbstractVirtualFileHandler.structuredFindChild(Ljava/lang/String;)Lorg/jboss/virtual/spi/VirtualFileHandler;
+J  org.jboss.virtual.plugins.context.DelegatingHandler.getChild(Ljava/lang/String;)Lorg/jboss/virtual/spi/VirtualFileHandler;
+J  org.jboss.virtual.VirtualFile.getChild(Ljava/lang/String;)Lorg/jboss/virtual/VirtualFile;
+j  org.jboss.deployers.vfs.plugins.structure.explicit.DeclaredStructure.determineStructure(Lorg/jboss/deployers/vfs/spi/structure/StructureContext;)Z+56
+j  org.jboss.deployers.vfs.plugins.structure.StructureDeployerWrapper.determineStructure(Lorg/jboss/deployers/vfs/spi/structure/StructureContext;)Z+48
+j  org.jboss.deployers.vfs.plugins.structure.VFSStructuralDeployersImpl.doDetermineStructure(Lorg/jboss/deployers/vfs/spi/structure/StructureContext;)Z+145
+j  org.jboss.deployers.vfs.plugins.structure.VFSStructuralDeployersImpl.determineStructure(Lorg/jboss/deployers/client/spi/Deployment;Lorg/jboss/deployers/spi/structure/StructureMetaData;)V+95
+j  org.jboss.deployers.structure.spi.helpers.AbstractStructuralDeployers.determineStructure(Lorg/jboss/deployers/client/spi/Deployment;)Lorg/jboss/deployers/structure/spi/DeploymentContext;+54
+j  org.jboss.deployers.plugins.main.MainDeployerImpl.determineStructure(Lorg/jboss/deployers/client/spi/Deployment;)Lorg/jboss/deployers/structure/spi/DeploymentContext;+11
+j  org.jboss.deployers.plugins.main.MainDeployerImpl.determineDeploymentContext(Lorg/jboss/deployers/client/spi/Deployment;Z)V+12
+j  org.jboss.deployers.plugins.main.MainDeployerImpl.processToDeploy(Ljava/util/Collection;)V+39
+j  org.jboss.deployers.plugins.main.MainDeployerImpl.process()V+186
+j  org.jboss.system.server.profileservice.repository.MainDeployerAdapter.process()V+4
+j  org.jboss.system.server.profileservice.hotdeploy.HDScanner.scan()V+351
+j  org.jboss.system.server.profileservice.hotdeploy.HDScanner.run()V+1
+j  java.util.concurrent.Executors$RunnableAdapter.call()Ljava/lang/Object;+4
+j  java.util.concurrent.FutureTask$Sync.innerRunAndReset()Z+30
+j  java.util.concurrent.FutureTask.runAndReset()Z+4
+j  java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$101(Ljava/util/concurrent/ScheduledThreadPoolExecutor$ScheduledFutureTask;)Z+1
+j  java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.runPeriodic()V+1
+j  java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run()V+8
+j  java.util.concurrent.ThreadPoolExecutor$Worker.runTask(Ljava/lang/Runnable;)V+59
+j  java.util.concurrent.ThreadPoolExecutor$Worker.run()V+28
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0xc0149000 JavaThread "JBoss System Threads(1)-7" daemon [_thread_blocked, id=8641, stack(0xbb00d000,0xbb05e000)]
+  0xc3432400 JavaThread "RMI TCP Connection(idle)" daemon [_thread_blocked, id=8602, stack(0xbb05e000,0xbb0af000)]
+  0xc17e4400 JavaThread "RMI TCP Connection(23)-127.0.0.1" daemon [_thread_in_native, id=8601, stack(0xbf3af000,0xbf400000)]
+  0xbd2bb000 JavaThread "JBoss System Threads(1)-6" daemon [_thread_blocked, id=8513, stack(0xbe758000,0xbe7a9000)]
+  0xc323d400 JavaThread "ZipFile Lock Reaper" daemon [_thread_blocked, id=8415, stack(0xbfc0a000,0xbfc5b000)]
+  0xc01f0800 JavaThread "JBoss System Threads(1)-5" daemon [_thread_blocked, id=8368, stack(0xc0a6e000,0xc0abf000)]
+  0xc19ce000 JavaThread "JBoss System Threads(1)-4" daemon [_thread_blocked, id=8329, stack(0xbedaf000,0xbee00000)]
+  0xc3120c00 JavaThread "WorkerThread#0[10.201.3.5:50798]" [_thread_blocked, id=8305, stack(0xc1c8c000,0xc1cdd000)]
+  0xbddeac00 JavaThread "JBoss System Threads(1)-3" daemon [_thread_blocked, id=8301, stack(0xc185e000,0xc18af000)]
+  0xc3131000 JavaThread "http-0.0.0.0-8080-1" daemon [_thread_blocked, id=8225, stack(0xbb70d000,0xbb75e000)]
+  0xbddea400 JavaThread "ajp-0.0.0.0-8009-Acceptor-0" daemon [_thread_in_native, id=8223, stack(0xbb0af000,0xbb100000)]
+  0xc163f400 JavaThread "http-0.0.0.0-8443-Acceptor-0" daemon [_thread_in_native, id=8222, stack(0xbb200000,0xbb251000)]
+  0xbd4ba800 JavaThread "http-0.0.0.0-8080-Acceptor-0" daemon [_thread_in_native, id=8221, stack(0xbb50d000,0xbb55e000)]
+  0xbce3dc00 JavaThread "JBossLifeThread" [_thread_blocked, id=8220, stack(0xbb5af000,0xbb600000)]
+  0xbdde7c00 JavaThread "Thread-19" daemon [_thread_blocked, id=8219, stack(0xbb4bc000,0xbb50d000)]
+  0xc002f000 JavaThread "Thread-18" daemon [_thread_blocked, id=8218, stack(0xbb46b000,0xbb4bc000)]
+  0xc0541400 JavaThread "Thread-17" daemon [_thread_blocked, id=8215, stack(0xbb55e000,0xbb5af000)]
+  0xc05f3c00 JavaThread "Thread-15" daemon [_thread_blocked, id=8208, stack(0xbb75e000,0xbb7af000)]
+  0xbf4c5400 JavaThread "JCA PoolFiller" [_thread_blocked, id=8207, stack(0xbb7af000,0xbb800000)]
+  0xc0141800 JavaThread "HSQLDB Timer @c4aaec" daemon [_thread_blocked, id=8206, stack(0xbbb0d000,0xbbb5e000)]
+  0xc0545000 JavaThread "DefaultQuartzScheduler_QuartzSchedulerThread" [_thread_blocked, id=8205, stack(0xbbb5e000,0xbbbaf000)]
+  0xc0c93400 JavaThread "DefaultQuartzScheduler_Worker-9" [_thread_blocked, id=8204, stack(0xbbd0d000,0xbbd5e000)]
+  0xc0cfd000 JavaThread "DefaultQuartzScheduler_Worker-8" [_thread_blocked, id=8203, stack(0xbbd5e000,0xbbdaf000)]
+  0xbd318400 JavaThread "DefaultQuartzScheduler_Worker-7" [_thread_blocked, id=8202, stack(0xbbdaf000,0xbbe00000)]
+  0xc01b4c00 JavaThread "DefaultQuartzScheduler_Worker-6" [_thread_blocked, id=8201, stack(0xbc10d000,0xbc15e000)]
+  0xc0116c00 JavaThread "DefaultQuartzScheduler_Worker-5" [_thread_blocked, id=8200, stack(0xbc15e000,0xbc1af000)]
+  0xc00de400 JavaThread "DefaultQuartzScheduler_Worker-4" [_thread_blocked, id=8199, stack(0xbc1af000,0xbc200000)]
+  0xbff7f800 JavaThread "DefaultQuartzScheduler_Worker-3" [_thread_blocked, id=8198, stack(0xbc30d000,0xbc35e000)]
+  0xc1640000 JavaThread "DefaultQuartzScheduler_Worker-2" [_thread_blocked, id=8197, stack(0xbc35e000,0xbc3af000)]
+  0xc0c35c00 JavaThread "DefaultQuartzScheduler_Worker-1" [_thread_blocked, id=8196, stack(0xbc3af000,0xbc400000)]
+  0xc0079400 JavaThread "DefaultQuartzScheduler_Worker-0" [_thread_blocked, id=8195, stack(0xbcc0d000,0xbcc5e000)]
+  0xc0c17800 JavaThread "WorkManager(2)-1" daemon [_thread_blocked, id=8194, stack(0xbfc5b000,0xbfcac000)]
+  0xbd4ec000 JavaThread "AOPListner" daemon [_thread_blocked, id=8193, stack(0xbfcac000,0xbfcfd000)]
+  0xc1645800 JavaThread "ContainerBackgroundProcessor[StandardEngine[jboss.web]]" daemon [_thread_blocked, id=8192, stack(0xc0f2d000,0xc0f7e000)]
+  0xc0c7c000 JavaThread "PooledInvokerAcceptor#0-4445" [_thread_in_native, id=8191, stack(0xbcc5e000,0xbccaf000)]
+  0xbf2dd400 JavaThread "RMI TCP Accept-4444" daemon [_thread_in_native, id=8190, stack(0xbccaf000,0xbcd00000)]
+  0xbffe2000 JavaThread "Thread-12" [_thread_blocked, id=8189, stack(0xbd55e000,0xbd5af000)]
+  0xbe4f4400 JavaThread "Listener:4712" daemon [_thread_in_native, id=8188, stack(0xbd50d000,0xbd55e000)]
+  0xbf236000 JavaThread "Thread-11" daemon [_thread_blocked, id=8185, stack(0xbd5af000,0xbd600000)]
+  0xc0550800 JavaThread "Thread-10" daemon [_thread_blocked, id=8184, stack(0xbd80d000,0xbd85e000)]
+  0xbe4f8000 JavaThread "Thread-9" daemon [_thread_blocked, id=8183, stack(0xbd85e000,0xbd8af000)]
+  0xc054c800 JavaThread "Listener:4713" daemon [_thread_in_native, id=8182, stack(0xbe7af000,0xbe800000)]
+  0xc002c400 JavaThread "AcceptorThread[ServerSocket[addr=/0.0.0.0,port=0,localport=4446]]" [_thread_in_native, id=8181, stack(0xbd8af000,0xbd900000)]
+  0xc0152c00 JavaThread "ServerSocketRefresh" daemon [_thread_blocked, id=8180, stack(0xbdf0d000,0xbdf5e000)]
+=>0xbb63bc00 JavaThread "HDScanner" [_thread_in_native, id=8179, stack(0xbdf5e000,0xbdfaf000)]
+  0xbfffc400 JavaThread "AcceptorThread[ServerSocket[addr=/0.0.0.0,port=0,localport=3873]]" [_thread_in_native, id=8178, stack(0xbdfaf000,0xbe000000)]
+  0xc0145c00 JavaThread "ServerSocketRefresh" daemon [_thread_blocked, id=8177, stack(0xbe10d000,0xbe15e000)]
+  0xc01f3400 JavaThread "secondaryServerSocketThread[0]" daemon [_thread_in_native, id=8176, stack(0xbe15e000,0xbe1af000)]
+  0xbf2c0c00 JavaThread "AcceptorThread[ServerSocket[addr=/0.0.0.0,port=0,localport=4457]]" [_thread_in_native, id=8175, stack(0xbe1af000,0xbe200000)]
+  0xc0144800 JavaThread "ServerSocketRefresh" daemon [_thread_blocked, id=8174, stack(0xbe707000,0xbe758000)]
+  0xc3117000 JavaThread "RMI RenewClean-[10.162.4.120:50902]" daemon [_thread_blocked, id=8172, stack(0xbed0d000,0xbed5e000)]
+  0xbf2de000 JavaThread "RMI Scheduler(0)" daemon [_thread_blocked, id=8171, stack(0xbed5e000,0xbedaf000)]
+  0xc00ed800 JavaThread "RMI TCP Accept-1090" daemon [_thread_in_native, id=8169, stack(0xbf332000,0xbf383000)]
+  0xc1aa7800 JavaThread "SubscriptionWatchDog" [_thread_blocked, id=8161, stack(0xbbbaf000,0xbbc00000)]
+  0xc0c27400 JavaThread "JBoss System Threads(1)-2" daemon [_thread_in_native, id=8160, stack(0xc030d000,0xc035e000)]
+  0xc0189800 JavaThread "GC Daemon" daemon [_thread_blocked, id=8159, stack(0xc035e000,0xc03af000)]
+  0xc057e400 JavaThread "RMI Reaper" [_thread_blocked, id=8158, stack(0xc03af000,0xc0400000)]
+  0xc0146400 JavaThread "RMI TCP Accept-1098" daemon [_thread_in_native, id=8157, stack(0xc060d000,0xc065e000)]
+  0xc00db400 JavaThread "JBoss System Threads(1)-1" daemon [_thread_in_native, id=8156, stack(0xc065e000,0xc06af000)]
+  0xc0037400 JavaThread "Timer-Log4jService" daemon [_thread_blocked, id=8155, stack(0xc06af000,0xc0700000)]
+  0xc19ffc00 JavaThread "Timer-0" daemon [_thread_blocked, id=8153, stack(0xc18af000,0xc1900000)]
+  0xf6a05800 JavaThread "DestroyJavaVM" [_thread_blocked, id=8136, stack(0xf6b86000,0xf6bd7000)]
+  0xc1ef6400 JavaThread "RMI TCP Accept-0" daemon [_thread_in_native, id=8150, stack(0xc1d5e000,0xc1daf000)]
+  0xc1eef400 JavaThread "RMI TCP Accept-9999" daemon [_thread_in_native, id=8149, stack(0xc1daf000,0xc1e00000)]
+  0xc1eea400 JavaThread "RMI TCP Accept-0" daemon [_thread_in_native, id=8148, stack(0xc1f26000,0xc1f77000)]
+  0xf6ac8c00 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=8147, stack(0xc2a2e000,0xc2a7f000)]
+  0xf6ac6c00 JavaThread "CompilerThread1" daemon [_thread_blocked, id=8146, stack(0xc2a7f000,0xc2b00000)]
+  0xf6ac5000 JavaThread "CompilerThread0" daemon [_thread_in_native, id=8145, stack(0xc2c17000,0xc2c98000)]
+  0xf6ac3800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=8144, stack(0xc302e000,0xc307f000)]
+  0xf6ab4400 JavaThread "Finalizer" daemon [_thread_blocked, id=8143, stack(0xc332e000,0xc337f000)]
+  0xf6ab2c00 JavaThread "Reference Handler" daemon [_thread_blocked, id=8142, stack(0xc2c98000,0xc2ce9000)]
+
+Other Threads:
+  0xf6aaec00 VMThread [stack: 0xc2ce9000,0xc2d6a000] [id=8141]
+  0xc1ef8000 WatcherThread [stack: 0xc1cdd000,0xc1d5e000] [id=8151]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 33984K, used 14254K [0xf0060000, 0xf2600000, 0xf3940000)
+  eden space 30976K, 45% used [0xf0060000,0xf0e19938,0xf1ea0000)
+  from space 3008K, 6% used [0xf2310000,0xf2342050,0xf2600000)
+  to   space 3776K, 0% used [0xf1ea0000,0xf1ea0000,0xf2250000)
+ PSOldGen        total 334592K, used 311676K [0xd3940000, 0xe8000000, 0xf0060000)
+  object space 334592K, 93% used [0xd3940000,0xe699f0a8,0xe8000000)
+ PSPermGen       total 103296K, used 72713K [0xc3940000, 0xc9e20000, 0xd3940000)
+  object space 103296K, 70% used [0xc3940000,0xc80427c8,0xc9e20000)
+
+Dynamic libraries:
+0026a000-0039f000 r-xp 00000000 fd:00 2246964                            /usr/lib/libX11.so.6.3.0
+0039f000-003a3000 rwxp 00134000 fd:00 2246964                            /usr/lib/libX11.so.6.3.0
+003a5000-003a7000 r-xp 00000000 fd:00 2237745                            /usr/lib/libXau.so.6.0.0
+003a7000-003a8000 rwxp 00001000 fd:00 2237745                            /usr/lib/libXau.so.6.0.0
+004cc000-004e1000 r-xp 00000000 fd:00 795178                             /lib/libresolv-2.12.so
+004e1000-004e2000 ---p 00015000 fd:00 795178                             /lib/libresolv-2.12.so
+004e2000-004e3000 r-xp 00015000 fd:00 795178                             /lib/libresolv-2.12.so
+004e3000-004e4000 rwxp 00016000 fd:00 795178                             /lib/libresolv-2.12.so
+004e4000-004e6000 rwxp 00000000 00:00 0 
+004e8000-00507000 r-xp 00000000 fd:00 2246603                            /usr/lib/libxcb.so.1.1.0
+00507000-00508000 rwxp 0001f000 fd:00 2246603                            /usr/lib/libxcb.so.1.1.0
+00960000-00971000 r-xp 00000000 fd:00 2247012                            /usr/lib/libXext.so.6.4.0
+00971000-00972000 rwxp 00011000 fd:00 2247012                            /usr/lib/libXext.so.6.4.0
+00991000-0099f000 r-xp 00000000 fd:00 2248081                            /usr/lib/libXi.so.6.1.0
+0099f000-009a0000 rwxp 0000d000 fd:00 2248081                            /usr/lib/libXi.so.6.1.0
+00be8000-00c06000 r-xp 00000000 fd:00 792557                             /lib/ld-2.12.so
+00c06000-00c07000 r-xp 0001d000 fd:00 792557                             /lib/ld-2.12.so
+00c07000-00c08000 rwxp 0001e000 fd:00 792557                             /lib/ld-2.12.so
+00c0a000-00d9b000 r-xp 00000000 fd:00 795095                             /lib/libc-2.12.so
+00d9b000-00d9d000 r-xp 00191000 fd:00 795095                             /lib/libc-2.12.so
+00d9d000-00d9e000 rwxp 00193000 fd:00 795095                             /lib/libc-2.12.so
+00d9e000-00da1000 rwxp 00000000 00:00 0 
+00da3000-00da6000 r-xp 00000000 fd:00 795162                             /lib/libdl-2.12.so
+00da6000-00da7000 r-xp 00002000 fd:00 795162                             /lib/libdl-2.12.so
+00da7000-00da8000 rwxp 00003000 fd:00 795162                             /lib/libdl-2.12.so
+00daa000-00db1000 r-xp 00000000 fd:00 795236                             /lib/librt-2.12.so
+00db1000-00db2000 r-xp 00006000 fd:00 795236                             /lib/librt-2.12.so
+00db2000-00db3000 rwxp 00007000 fd:00 795236                             /lib/librt-2.12.so
+00db5000-00dcc000 r-xp 00000000 fd:00 795212                             /lib/libpthread-2.12.so
+00dcc000-00dcd000 r-xp 00016000 fd:00 795212                             /lib/libpthread-2.12.so
+00dcd000-00dce000 rwxp 00017000 fd:00 795212                             /lib/libpthread-2.12.so
+00dce000-00dd0000 rwxp 00000000 00:00 0 
+00dd2000-00dfa000 r-xp 00000000 fd:00 787205                             /lib/libm-2.12.so
+00dfa000-00dfb000 r-xp 00027000 fd:00 787205                             /lib/libm-2.12.so
+00dfb000-00dfc000 rwxp 00028000 fd:00 787205                             /lib/libm-2.12.so
+08048000-08052000 r-xp 00000000 fd:00 1059626                            /usr/java/jdk1.6.0_17/bin/java
+08052000-08053000 rwxp 00009000 fd:00 1059626                            /usr/java/jdk1.6.0_17/bin/java
+08e4e000-08f31000 rwxp 00000000 00:00 0                                  [heap]
+baf00000-baff1000 rwxp 00000000 00:00 0 
+baff1000-bb000000 ---p 00000000 00:00 0 
+bb00d000-bb010000 ---p 00000000 00:00 0 
+bb010000-bb05e000 rwxp 00000000 00:00 0 
+bb05e000-bb061000 ---p 00000000 00:00 0 
+bb061000-bb0af000 rwxp 00000000 00:00 0 
+bb0af000-bb0b2000 ---p 00000000 00:00 0 
+bb0b2000-bb100000 rwxp 00000000 00:00 0 
+bb100000-bb200000 rwxp 00000000 00:00 0 
+bb200000-bb203000 ---p 00000000 00:00 0 
+bb203000-bb251000 rwxp 00000000 00:00 0 
+bb251000-bb2d5000 r-xp 00000000 fd:00 3159848                            /usr/java/jdk1.6.0_17/jre/lib/i386/libawt.so
+bb2d5000-bb2dc000 rwxp 00084000 fd:00 3159848                            /usr/java/jdk1.6.0_17/jre/lib/i386/libawt.so
+bb2dc000-bb300000 rwxp 00000000 00:00 0 
+bb300000-bb3ff000 rwxp 00000000 00:00 0 
+bb3ff000-bb400000 ---p 00000000 00:00 0 
+bb425000-bb468000 r-xp 00000000 fd:00 797818                             /usr/java/jdk1.6.0_17/jre/lib/i386/xawt/libmawt.so
+bb468000-bb46a000 rwxp 00043000 fd:00 797818                             /usr/java/jdk1.6.0_17/jre/lib/i386/xawt/libmawt.so
+bb46a000-bb46b000 rwxp 00000000 00:00 0 
+bb46b000-bb46e000 ---p 00000000 00:00 0 
+bb46e000-bb4bc000 rwxp 00000000 00:00 0 
+bb4bc000-bb4bf000 ---p 00000000 00:00 0 
+bb4bf000-bb50d000 rwxp 00000000 00:00 0 
+bb50d000-bb510000 ---p 00000000 00:00 0 
+bb510000-bb55e000 rwxp 00000000 00:00 0 
+bb55e000-bb561000 ---p 00000000 00:00 0 
+bb561000-bb5af000 rwxp 00000000 00:00 0 
+bb5af000-bb5b2000 ---p 00000000 00:00 0 
+bb5b2000-bb600000 rwxp 00000000 00:00 0 
+bb600000-bb6ff000 rwxp 00000000 00:00 0 
+bb6ff000-bb700000 ---p 00000000 00:00 0 
+bb70d000-bb710000 ---p 00000000 00:00 0 
+bb710000-bb75e000 rwxp 00000000 00:00 0 
+bb75e000-bb761000 ---p 00000000 00:00 0 
+bb761000-bb7af000 rwxp 00000000 00:00 0 
+bb7af000-bb7b2000 ---p 00000000 00:00 0 
+bb7b2000-bb800000 rwxp 00000000 00:00 0 
+bb800000-bb8f9000 rwxp 00000000 00:00 0 
+bb8f9000-bb900000 ---p 00000000 00:00 0 
+bb900000-bb9f9000 rwxp 00000000 00:00 0 
+bb9f9000-bba00000 ---p 00000000 00:00 0 
+bba00000-bbaf9000 rwxp 00000000 00:00 0 
+bbaf9000-bbb00000 ---p 00000000 00:00 0 
+bbb0d000-bbb10000 ---p 00000000 00:00 0 
+bbb10000-bbb5e000 rwxp 00000000 00:00 0 
+bbb5e000-bbb61000 ---p 00000000 00:00 0 
+bbb61000-bbbaf000 rwxp 00000000 00:00 0 
+bbbaf000-bbbb2000 ---p 00000000 00:00 0 
+bbbb2000-bbc00000 rwxp 00000000 00:00 0 
+bbc00000-bbcfc000 rwxp 00000000 00:00 0 
+bbcfc000-bbd00000 ---p 00000000 00:00 0 
+bbd0d000-bbd10000 ---p 00000000 00:00 0 
+bbd10000-bbd5e000 rwxp 00000000 00:00 0 
+bbd5e000-bbd61000 ---p 00000000 00:00 0 
+bbd61000-bbdaf000 rwxp 00000000 00:00 0 
+bbdaf000-bbdb2000 ---p 00000000 00:00 0 
+bbdb2000-bbe00000 rwxp 00000000 00:00 0 
+bbe00000-bbef9000 rwxp 00000000 00:00 0 
+bbef9000-bbf00000 ---p 00000000 00:00 0 
+bbf00000-bbff9000 rwxp 00000000 00:00 0 
+bbff9000-bc000000 ---p 00000000 00:00 0 
+bc000000-bc0fa000 rwxp 00000000 00:00 0 
+bc0fa000-bc100000 ---p 00000000 00:00 0 
+bc10d000-bc110000 ---p 00000000 00:00 0 
+bc110000-bc15e000 rwxp 00000000 00:00 0 
+bc15e000-bc161000 ---p 00000000 00:00 0 
+bc161000-bc1af000 rwxp 00000000 00:00 0 
+bc1af000-bc1b2000 ---p 00000000 00:00 0 
+bc1b2000-bc200000 rwxp 00000000 00:00 0 
+bc200000-bc2fe000 rwxp 00000000 00:00 0 
+bc2fe000-bc300000 ---p 00000000 00:00 0 
+bc30d000-bc310000 ---p 00000000 00:00 0 
+bc310000-bc35e000 rwxp 00000000 00:00 0 
+bc35e000-bc361000 ---p 00000000 00:00 0 
+bc361000-bc3af000 rwxp 00000000 00:00 0 
+bc3af000-bc3b2000 ---p 00000000 00:00 0 
+bc3b2000-bc400000 rwxp 00000000 00:00 0 
+bc400000-bc4f9000 rwxp 00000000 00:00 0 
+bc4f9000-bc500000 ---p 00000000 00:00 0 
+bc500000-bc5f9000 rwxp 00000000 00:00 0 
+bc5f9000-bc600000 ---p 00000000 00:00 0 
+bc600000-bc6f9000 rwxp 00000000 00:00 0 
+bc6f9000-bc700000 ---p 00000000 00:00 0 
+bc700000-bc7f9000 rwxp 00000000 00:00 0 
+bc7f9000-bc800000 ---p 00000000 00:00 0 
+bc800000-bc8f9000 rwxp 00000000 00:00 0 
+bc8f9000-bc900000 ---p 00000000 00:00 0 
+bc900000-bc9f9000 rwxp 00000000 00:00 0 
+bc9f9000-bca00000 ---p 00000000 00:00 0 
+bca00000-bcaf9000 rwxp 00000000 00:00 0 
+bcaf9000-bcb00000 ---p 00000000 00:00 0 
+bcb00000-bcbf9000 rwxp 00000000 00:00 0 
+bcbf9000-bcc00000 ---p 00000000 00:00 0 
+bcc0d000-bcc10000 ---p 00000000 00:00 0 
+bcc10000-bcc5e000 rwxp 00000000 00:00 0 
+bcc5e000-bcc61000 ---p 00000000 00:00 0 
+bcc61000-bccaf000 rwxp 00000000 00:00 0 
+bccaf000-bccb2000 ---p 00000000 00:00 0 
+bccb2000-bcd00000 rwxp 00000000 00:00 0 
+bcd00000-bcdf9000 rwxp 00000000 00:00 0 
+bcdf9000-bce00000 ---p 00000000 00:00 0 
+bce00000-bcef9000 rwxp 00000000 00:00 0 
+bcef9000-bcf00000 ---p 00000000 00:00 0 
+bcf00000-bcff9000 rwxp 00000000 00:00 0 
+bcff9000-bd000000 ---p 00000000 00:00 0 
+bd000000-bd0f9000 rwxp 00000000 00:00 0 
+bd0f9000-bd100000 ---p 00000000 00:00 0 
+bd100000-bd1f9000 rwxp 00000000 00:00 0 
+bd1f9000-bd200000 ---p 00000000 00:00 0 
+bd200000-bd2f9000 rwxp 00000000 00:00 0 
+bd2f9000-bd300000 ---p 00000000 00:00 0 
+bd300000-bd3f9000 rwxp 00000000 00:00 0 
+bd3f9000-bd400000 ---p 00000000 00:00 0 
+bd400000-bd4f9000 rwxp 00000000 00:00 0 
+bd4f9000-bd500000 ---p 00000000 00:00 0 
+bd50d000-bd510000 ---p 00000000 00:00 0 
+bd510000-bd55e000 rwxp 00000000 00:00 0 
+bd55e000-bd561000 ---p 00000000 00:00 0 
+bd561000-bd5af000 rwxp 00000000 00:00 0 
+bd5af000-bd5b2000 ---p 00000000 00:00 0 
+bd5b2000-bd600000 rwxp 00000000 00:00 0 
+bd600000-bd6f9000 rwxp 00000000 00:00 0 
+bd6f9000-bd700000 ---p 00000000 00:00 0 
+bd700000-bd7f9000 rwxp 00000000 00:00 0 
+bd7f9000-bd800000 ---p 00000000 00:00 0 
+bd80d000-bd810000 ---p 00000000 00:00 0 
+bd810000-bd85e000 rwxp 00000000 00:00 0 
+bd85e000-bd861000 ---p 00000000 00:00 0 
+bd861000-bd8af000 rwxp 00000000 00:00 0 
+bd8af000-bd8b2000 ---p 00000000 00:00 0 
+bd8b2000-bd900000 rwxp 00000000 00:00 0 
+bd900000-bd9f9000 rwxp 00000000 00:00 0 
+bd9f9000-bda00000 ---p 00000000 00:00 0 
+bda00000-bdaf9000 rwxp 00000000 00:00 0 
+bdaf9000-bdb00000 ---p 00000000 00:00 0 
+bdb00000-bdbf9000 rwxp 00000000 00:00 0 
+bdbf9000-bdc00000 ---p 00000000 00:00 0 
+bdc00000-bdd00000 rwxp 00000000 00:00 0 
+bdd00000-bddf9000 rwxp 00000000 00:00 0 
+bddf9000-bde00000 ---p 00000000 00:00 0 
+bde00000-bdefc000 rwxp 00000000 00:00 0 
+bdefc000-bdf00000 ---p 00000000 00:00 0 
+bdf0d000-bdf10000 ---p 00000000 00:00 0 
+bdf10000-bdf5e000 rwxp 00000000 00:00 0 
+bdf5e000-bdf61000 ---p 00000000 00:00 0 
+bdf61000-bdfaf000 rwxp 00000000 00:00 0 
+bdfaf000-bdfb2000 ---p 00000000 00:00 0 
+bdfb2000-be000000 rwxp 00000000 00:00 0 
+be000000-be0f9000 rwxp 00000000 00:00 0 
+be0f9000-be100000 ---p 00000000 00:00 0 
+be10d000-be110000 ---p 00000000 00:00 0 
+be110000-be15e000 rwxp 00000000 00:00 0 
+be15e000-be161000 ---p 00000000 00:00 0 
+be161000-be1af000 rwxp 00000000 00:00 0 
+be1af000-be1b2000 ---p 00000000 00:00 0 
+be1b2000-be200000 rwxp 00000000 00:00 0 
+be200000-be2f9000 rwxp 00000000 00:00 0 
+be2f9000-be300000 ---p 00000000 00:00 0 
+be300000-be3f9000 rwxp 00000000 00:00 0 
+be3f9000-be400000 ---p 00000000 00:00 0 
+be400000-be4f9000 rwxp 00000000 00:00 0 
+be4f9000-be500000 ---p 00000000 00:00 0 
+be500000-be5f9000 rwxp 00000000 00:00 0 
+be5f9000-be600000 ---p 00000000 00:00 0 
+be600000-be6fe000 rwxp 00000000 00:00 0 
+be6fe000-be700000 ---p 00000000 00:00 0 
+be707000-be70a000 ---p 00000000 00:00 0 
+be70a000-be758000 rwxp 00000000 00:00 0 
+be758000-be75b000 ---p 00000000 00:00 0 
+be75b000-be7a9000 rwxp 00000000 00:00 0 
+be7af000-be7b2000 ---p 00000000 00:00 0 
+be7b2000-be800000 rwxp 00000000 00:00 0 
+be800000-be8f8000 rwxp 00000000 00:00 0 
+be8f8000-be900000 ---p 00000000 00:00 0 
+be900000-be9fc000 rwxp 00000000 00:00 0 
+be9fc000-bea00000 ---p 00000000 00:00 0 
+bea00000-beaf9000 rwxp 00000000 00:00 0 
+beaf9000-beb00000 ---p 00000000 00:00 0 
+beb00000-bebfd000 rwxp 00000000 00:00 0 
+bebfd000-bec00000 ---p 00000000 00:00 0 
+bec00000-bed00000 rwxp 00000000 00:00 0 
+bed0d000-bed10000 ---p 00000000 00:00 0 
+bed10000-bed5e000 rwxp 00000000 00:00 0 
+bed5e000-bed61000 ---p 00000000 00:00 0 
+bed61000-bedaf000 rwxp 00000000 00:00 0 
+bedaf000-bedb2000 ---p 00000000 00:00 0 
+bedb2000-bee00000 rwxp 00000000 00:00 0 
+bee00000-beeff000 rwxp 00000000 00:00 0 
+beeff000-bef00000 ---p 00000000 00:00 0 
+bef00000-beffb000 rwxp 00000000 00:00 0 
+beffb000-bf000000 ---p 00000000 00:00 0 
+bf000000-bf0fb000 rwxp 00000000 00:00 0 
+bf0fb000-bf100000 ---p 00000000 00:00 0 
+bf100000-bf1fa000 rwxp 00000000 00:00 0 
+bf1fa000-bf200000 ---p 00000000 00:00 0 
+bf200000-bf2fe000 rwxp 00000000 00:00 0 
+bf2fe000-bf300000 ---p 00000000 00:00 0 
+bf332000-bf335000 ---p 00000000 00:00 0 
+bf335000-bf383000 rwxp 00000000 00:00 0 
+bf3af000-bf3b2000 ---p 00000000 00:00 0 
+bf3b2000-bf400000 rwxp 00000000 00:00 0 
+bf400000-bf4f9000 rwxp 00000000 00:00 0 
+bf4f9000-bf500000 ---p 00000000 00:00 0 
+bf500000-bf600000 rwxp 00000000 00:00 0 
+bf600000-bf6ff000 rwxp 00000000 00:00 0 
+bf6ff000-bf700000 ---p 00000000 00:00 0 
+bf700000-bf7fc000 rwxp 00000000 00:00 0 
+bf7fc000-bf800000 ---p 00000000 00:00 0 
+bf800000-bf8ff000 rwxp 00000000 00:00 0 
+bf8ff000-bf900000 ---p 00000000 00:00 0 
+bf900000-bf9fe000 rwxp 00000000 00:00 0 
+bf9fe000-bfa00000 ---p 00000000 00:00 0 
+bfa00000-bfc00000 rwxp 00000000 00:00 0 
+bfc0a000-bfc0d000 ---p 00000000 00:00 0 
+bfc0d000-bfc5b000 rwxp 00000000 00:00 0 
+bfc5b000-bfc5e000 ---p 00000000 00:00 0 
+bfc5e000-bfcac000 rwxp 00000000 00:00 0 
+bfcac000-bfcaf000 ---p 00000000 00:00 0 
+bfcaf000-bfcfd000 rwxp 00000000 00:00 0 
+bfcfd000-bfd00000 r-xs 00035000 fd:00 3152105                            /usr/java/jdk1.6.0_17/jre/lib/ext/sunpkcs11.jar
+bfd00000-bfdf9000 rwxp 00000000 00:00 0 
+bfdf9000-bfe00000 ---p 00000000 00:00 0 
+bfe00000-bfefd000 rwxp 00000000 00:00 0 
+bfefd000-bff00000 ---p 00000000 00:00 0 
+bff00000-bfffe000 rwxp 00000000 00:00 0 
+bfffe000-c0000000 ---p 00000000 00:00 0 
+c0000000-c00ff000 rwxp 00000000 00:00 0 
+c00ff000-c0100000 ---p 00000000 00:00 0 
+c0100000-c01fc000 rwxp 00000000 00:00 0 
+c01fc000-c0200000 ---p 00000000 00:00 0 
+c0200000-c02fd000 rwxp 00000000 00:00 0 
+c02fd000-c0300000 ---p 00000000 00:00 0 
+c030d000-c0310000 ---p 00000000 00:00 0 
+c0310000-c035e000 rwxp 00000000 00:00 0 
+c035e000-c0361000 ---p 00000000 00:00 0 
+c0361000-c03af000 rwxp 00000000 00:00 0 
+c03af000-c03b2000 ---p 00000000 00:00 0 
+c03b2000-c0400000 rwxp 00000000 00:00 0 
+c0400000-c04fc000 rwxp 00000000 00:00 0 
+c04fc000-c0500000 ---p 00000000 00:00 0 
+c0500000-c05f9000 rwxp 00000000 00:00 0 
+c05f9000-c0600000 ---p 00000000 00:00 0 
+c060d000-c0610000 ---p 00000000 00:00 0 
+c0610000-c065e000 rwxp 00000000 00:00 0 
+c065e000-c0661000 ---p 00000000 00:00 0 
+c0661000-c06af000 rwxp 00000000 00:00 0 
+c06af000-c06b2000 ---p 00000000 00:00 0 
+c06b2000-c0700000 rwxp 00000000 00:00 0 
+c0700000-c0800000 rwxp 00000000 00:00 0 
+c0800000-c0900000 rwxp 00000000 00:00 0 
+c0900000-c09fc000 rwxp 00000000 00:00 0 
+c09fc000-c0a00000 ---p 00000000 00:00 0 
+c0a4e000-c0a51000 r-xs 00013000 fd:00 3024995                            /usr/java/jdk1.6.0_17/jre/lib/jce.jar
+c0a6e000-c0a71000 ---p 00000000 00:00 0 
+c0a71000-c0abf000 rwxp 00000000 00:00 0 
+c0abf000-c0ac4000 r-xp 00000000 fd:00 2254794                            /usr/lib/libXtst.so.6.1.0
+c0ac4000-c0ac5000 rwxp 00004000 fd:00 2254794                            /usr/lib/libXtst.so.6.1.0
+c0b00000-c0bd0000 rwxp 00000000 00:00 0 
+c0bd0000-c0c00000 ---p 00000000 00:00 0 
+c0c00000-c0cff000 rwxp 00000000 00:00 0 
+c0cff000-c0d00000 ---p 00000000 00:00 0 
+c0d00000-c0dfe000 rwxp 00000000 00:00 0 
+c0dfe000-c0e00000 ---p 00000000 00:00 0 
+c0e00000-c0efb000 rwxp 00000000 00:00 0 
+c0efb000-c0f00000 ---p 00000000 00:00 0 
+c0f00000-c0f07000 r-xs 00091000 fd:00 3025015                            /usr/java/jdk1.6.0_17/jre/lib/jsse.jar
+c0f2d000-c0f30000 ---p 00000000 00:00 0 
+c0f30000-c0f7e000 rwxp 00000000 00:00 0 
+c0f7e000-c0f83000 r-xp 00000000 fd:00 795135                             /lib/libnss_dns-2.12.so
+c0f83000-c0f84000 r-xp 00004000 fd:00 795135                             /lib/libnss_dns-2.12.so
+c0f84000-c0f85000 rwxp 00005000 fd:00 795135                             /lib/libnss_dns-2.12.so
+c0fab000-c0fad000 r-xp 00000000 fd:00 795185                             /lib/libnss_mdns4_minimal.so.2
+c0fad000-c0fae000 rwxp 00001000 fd:00 795185                             /lib/libnss_mdns4_minimal.so.2
+c0fb6000-c0fb9000 r-xs 00013000 fd:00 3024995                            /usr/java/jdk1.6.0_17/jre/lib/jce.jar
+c1000000-c10f9000 rwxp 00000000 00:00 0 
+c10f9000-c1100000 ---p 00000000 00:00 0 
+c1100000-c11fc000 rwxp 00000000 00:00 0 
+c11fc000-c1200000 ---p 00000000 00:00 0 
+c1200000-c12fc000 rwxp 00000000 00:00 0 
+c12fc000-c1300000 ---p 00000000 00:00 0 
+c1300000-c13fd000 rwxp 00000000 00:00 0 
+c13fd000-c1400000 ---p 00000000 00:00 0 
+c1400000-c14e9000 rwxp 00000000 00:00 0 
+c14e9000-c1500000 ---p 00000000 00:00 0 
+c1500000-c15e1000 rwxp 00000000 00:00 0 
+c15e1000-c1600000 ---p 00000000 00:00 0 
+c1600000-c16fc000 rwxp 00000000 00:00 0 
+c16fc000-c1700000 ---p 00000000 00:00 0 
+c1700000-c17e8000 rwxp 00000000 00:00 0 
+c17e8000-c1800000 ---p 00000000 00:00 0 
+c1800000-c1803000 r-xs 000cb000 fd:00 3154894                            /usr/java/jdk1.6.0_17/jre/lib/ext/localedata.jar
+c1829000-c1830000 r-xp 00000000 fd:00 3159830                            /usr/java/jdk1.6.0_17/jre/lib/i386/libnio.so
+c1830000-c1831000 rwxp 00006000 fd:00 3159830                            /usr/java/jdk1.6.0_17/jre/lib/i386/libnio.so
+c1835000-c1836000 r-xp 00000000 fd:00 3159856                            /usr/java/jdk1.6.0_17/jre/lib/i386/librmi.so
+c1836000-c1837000 rwxp 00000000 fd:00 3159856                            /usr/java/jdk1.6.0_17/jre/lib/i386/librmi.so
+c1849000-c185e000 r-xs 00134000 fd:00 4851130                            /opt/jboss_510GA/common/lib/jboss-metadata.jar
+c185e000-c1861000 ---p 00000000 00:00 0 
+c1861000-c18af000 rwxp 00000000 00:00 0 
+c18af000-c18b2000 ---p 00000000 00:00 0 
+c18b2000-c1900000 rwxp 00000000 00:00 0 
+c1900000-c1af9000 rwxp 00000000 00:00 0 
+c1af9000-c1b00000 ---p 00000000 00:00 0 
+c1b00000-c1b81000 rwxp 00000000 00:00 0 
+c1b81000-c1c00000 ---p 00000000 00:00 0 
+c1c0e000-c1c11000 r-xs 00013000 fd:00 1707657                            /petrobras/exata/web/app/ReceptorSQL.war
+c1c1c000-c1c23000 r-xs 00111000 fd:00 3024981                            /usr/java/jdk1.6.0_17/jre/lib/resources.jar
+c1c23000-c1c2b000 r-xs 00051000 fd:00 4850434                            /opt/jboss_510GA/lib/trove.jar
+c1c2b000-c1c2f000 r-xs 00023000 fd:00 4850432                            /opt/jboss_510GA/lib/jboss-aop-mc-int.jar
+c1c2f000-c1c44000 r-xs 00135000 fd:00 4850433                            /opt/jboss_510GA/lib/jboss-aop.jar
+c1c44000-c1c46000 r-xs 00005000 fd:00 4850429                            /opt/jboss_510GA/lib/jboss-classloading-vfs.jar
+c1c46000-c1c49000 r-xs 00012000 fd:00 4850487                            /opt/jboss_510GA/lib/jboss-classloading.jar
+c1c49000-c1c4c000 r-xs 0001d000 fd:00 4850477                            /opt/jboss_510GA/lib/jboss-classloader.jar
+c1c4c000-c1c4d000 r-xs 00001000 fd:00 4850451                            /opt/jboss_510GA/lib/jboss-classloading-spi.jar
+c1c4d000-c1c53000 r-xs 00038000 fd:00 4850454                            /opt/jboss_510GA/lib/jboss-vfs.jar
+c1c53000-c1c57000 r-xs 0001c000 fd:00 4850456                            /opt/jboss_510GA/lib/jboss-managed.jar
+c1c57000-c1c5c000 r-xs 0001e000 fd:00 4850452                            /opt/jboss_510GA/lib/jboss-metatype.jar
+c1c5c000-c1c6b000 r-xs 00086000 fd:00 4850443                            /opt/jboss_510GA/lib/jboss-kernel.jar
+c1c6b000-c1c6f000 r-xs 00014000 fd:00 4850439                            /opt/jboss_510GA/lib/jboss-dependency.jar
+c1c6f000-c1c74000 r-xs 00027000 fd:00 4850484                            /opt/jboss_510GA/lib/jboss-mdr.jar
+c1c74000-c1c79000 r-xs 0002e000 fd:00 4850442                            /opt/jboss_510GA/lib/jboss-reflect.jar
+c1c79000-c1c82000 r-xs 0008b000 fd:00 4850447                            /opt/jboss_510GA/lib/javassist.jar
+c1c82000-c1c8c000 r-xs 00076000 fd:00 4850446                            /opt/jboss_510GA/lib/jboss-xml-binding.jar
+c1c8c000-c1c8f000 ---p 00000000 00:00 0 
+c1c8f000-c1cdd000 rwxp 00000000 00:00 0 
+c1cdd000-c1cde000 ---p 00000000 00:00 0 
+c1cde000-c1d5e000 rwxp 00000000 00:00 0 
+c1d5e000-c1d61000 ---p 00000000 00:00 0 
+c1d61000-c1daf000 rwxp 00000000 00:00 0 
+c1daf000-c1db2000 ---p 00000000 00:00 0 
+c1db2000-c1e00000 rwxp 00000000 00:00 0 
+c1e00000-c1f00000 rwxp 00000000 00:00 0 
+c1f02000-c1f05000 r-xs 00027000 fd:00 3154892                            /usr/java/jdk1.6.0_17/jre/lib/ext/sunjce_provider.jar
+c1f05000-c1f11000 r-xs 0007b000 fd:00 4850440                            /opt/jboss_510GA/lib/jboss-common-core.jar
+c1f11000-c1f12000 r-xs 00002000 fd:00 4850438                            /opt/jboss_510GA/lib/jboss-logbridge.jar
+c1f12000-c1f14000 r-xs 00009000 fd:00 4850466                            /opt/jboss_510GA/lib/jboss-logmanager.jar
+c1f14000-c1f17000 r-xs 0000c000 fd:00 4850436                            /opt/jboss_510GA/lib/jboss-logging-jdk.jar
+c1f17000-c1f19000 r-xs 00005000 fd:00 4850431                            /opt/jboss_510GA/lib/jboss-logging-log4j.jar
+c1f19000-c1f1b000 r-xs 00002000 fd:00 4850441                            /opt/jboss_510GA/lib/jboss-logging-spi.jar
+c1f1b000-c1f1f000 r-xs 0001c000 fd:00 4850485                            /opt/jboss_510GA/lib/log4j-boot.jar
+c1f1f000-c1f26000 r-xs 00038000 fd:00 4850471                            /opt/jboss_510GA/lib/concurrent.jar
+c1f26000-c1f29000 ---p 00000000 00:00 0 
+c1f29000-c1f77000 rwxp 00000000 00:00 0 
+c1f77000-c1fd6000 r-xs 00ba3000 fd:00 2888846                            /usr/java/jdk1.6.0_17/lib/tools.jar
+c1fd6000-c1fd7000 r-xs 00003000 fd:00 4850613                            /opt/jboss_510GA/client/getopt.jar
+c1fd7000-c1fd9000 r-xs 00009000 fd:00 4850528                            /opt/jboss_510GA/bin/run.jar
+c1fd9000-c1fe1000 r-xs 00028000 fd:00 1709316                            /petrobras/exata/lib/batiksvg/xml-apis.jar
+c1fe1000-c1fe4000 r-xs 0001b000 fd:00 1705265                            /petrobras/exata/lib/hibernate/hibernate-entitymanager.jar
+c1fe4000-c1fe6000 r-xs 00005000 fd:00 1705255                            /petrobras/exata/lib/exata/CurvasAscii2BDLib.jar
+c1fe6000-c1fe8000 r-xs 00011000 fd:00 1705234                            /petrobras/exata/lib/exata/LibCalha.jar
+c1fe8000-c1fec000 r-xs 0002f000 fd:00 1705044                            /petrobras/exata/lib/taglib/commons-lang-2.1.jar
+c1fec000-c1fed000 r-xs 00005000 fd:00 1705228                            /petrobras/exata/lib/exata/LibF5.jar
+c1fed000-c1ff9000 r-xs 00108000 fd:00 1709300                            /petrobras/exata/lib/jasper/iText-2.1.7.jar
+c1ff9000-c1ffc000 r-xs 0001b000 fd:00 1705058                            /petrobras/exata/lib/exata/UtilitariosExata.jar
+c1ffc000-c2000000 r-xs 00027000 fd:00 1709306                            /petrobras/exata/lib/json/gson-1.7.1.jar
+c2000000-c20fe000 rwxp 00000000 00:00 0 
+c20fe000-c2100000 ---p 00000000 00:00 0 
+c2100000-c2106000 r-xs 00032000 fd:00 1709324                            /petrobras/exata/lib/xml/jaxen.jar
+c2106000-c2108000 r-xs 00005000 fd:00 1705249                            /petrobras/exata/lib/exata/CurvasBD2LasLib.jar
+c2108000-c210a000 r-xs 0000b000 fd:00 1705059                            /petrobras/exata/lib/exata/WebExata.jar
+c210a000-c211c000 r-xs 001fc000 fd:00 1705226                            /petrobras/exata/lib/driversJDBC/ojdbc6.jar
+c211c000-c2158000 r-xs 00300000 fd:00 1709292                            /petrobras/exata/lib/jasper/jasperreports-4.5.0.jar
+c2158000-c215c000 r-xs 0001f000 fd:00 1709297                            /petrobras/exata/lib/jasper/commons-digester-1.7.jar
+c215c000-c2162000 r-xs 00032000 fd:00 1705057                            /petrobras/exata/lib/ca/jaxen-1.1.1.jar
+c2162000-c2167000 r-xs 00052000 fd:00 1709284                            /petrobras/exata/lib/hibernate/antlr.jar
+c2167000-c2169000 r-xs 00003000 fd:00 1705256                            /petrobras/exata/lib/exata/LibIniciaPoco.jar
+c2169000-c216b000 r-xs 0000d000 fd:00 1705251                            /petrobras/exata/lib/exata/LibExRCp.jar
+c216b000-c2172000 r-xs 00037000 fd:00 1709423                            /petrobras/exata/lib/junit/junit-4.10.jar
+c2172000-c2177000 r-xs 0002a000 fd:00 1705045                            /petrobras/exata/lib/taglib/commons-beanutils-1.7.0.jar
+c2177000-c217c000 r-xs 00028000 fd:00 1705246                            /petrobras/exata/lib/exata/LibSegPoco.jar
+c217c000-c217e000 r-xs 0000d000 fd:00 1709319                            /petrobras/exata/lib/file/commons-fileupload-1.2.2.jar
+c217e000-c2180000 r-xs 00010000 fd:00 1705159                            /petrobras/exata/lib/web/jsp-api.jar
+c2180000-c218d000 r-xs 0007c000 fd:00 1709302                            /petrobras/exata/lib/jboss-commons/commons-collections.jar
+c218d000-c2191000 r-xs 00032000 fd:00 1705253                            /petrobras/exata/lib/exata/LibControleAcesso.jar
+c2191000-c2193000 r-xs 0000c000 fd:00 1709303                            /petrobras/exata/lib/jboss-commons/commons-logging.jar
+c2193000-c219a000 r-xs 0004d000 fd:00 1709435                            /petrobras/exata/lib/mydoggy/filters-2.0.235.jar
+c219a000-c219b000 r-xs 00002000 fd:00 1709436                            /petrobras/exata/lib/mydoggy/TableLayout-20050920.jar
+c219b000-c21a5000 r-xs 00047000 fd:00 1709434                            /petrobras/exata/lib/mydoggy/mydoggy-examples-1.5.0.jar
+c21a5000-c21a6000 r-xs 00006000 fd:00 1705267                            /petrobras/exata/lib/hibernate/asm.jar
+c21a6000-c21ad000 r-xs 000a4000 fd:00 1709296                            /petrobras/exata/lib/jasper/zxing.jar
+c21ad000-c21b2000 r-xs 00017000 fd:00 1705014                            /petrobras/exata/lib/xml/xstream-1.0.2.jar
+c21b2000-c21b4000 r-xs 0025c000 fd:00 1709299                            /petrobras/exata/lib/jasper/jasperreports-fonts-4.5.0.jar
+c21b4000-c21b5000 r-xs 00006000 fd:00 1705188                            /petrobras/exata/lib/web/el-api.jar
+c21b5000-c21bc000 r-xs 00059000 fd:00 1705221                            /petrobras/exata/lib/log4j/log4j-1.2.15.jar
+c21bc000-c21be000 r-xs 00042000 fd:00 1709286                            /petrobras/exata/lib/salp/TransformacoesGDS.jar
+c21be000-c21c0000 r-xs 0000c000 fd:00 1705155                            /petrobras/exata/lib/web/cos.jar
+c21c0000-c21c3000 r-xs 0000d000 fd:00 1709282                            /petrobras/exata/lib/hibernate/hibernate-validator.jar
+c21c3000-c21e6000 r-xs 0020f000 fd:00 1705269                            /petrobras/exata/lib/hibernate/hibernate-core.jar
+c21e6000-c2200000 r-xs 000af000 fd:00 1705257                            /petrobras/exata/lib/exata/Entidades.jar
+c2200000-c22fb000 rwxp 00000000 00:00 0 
+c22fb000-c2300000 ---p 00000000 00:00 0 
+c2301000-c2306000 r-xs 00048000 fd:00 1709325                            /petrobras/exata/lib/xml/dom4j-1.6.1.jar
+c2306000-c230c000 r-xs 00077000 fd:00 1705225                            /petrobras/exata/lib/driversJDBC/postgresql-8.4-701.jdbc4.jar
+c230c000-c230f000 r-xs 00013000 fd:00 1709320                            /petrobras/exata/lib/file/commons-io-1.3.2.jar
+c230f000-c2317000 r-xs 00046000 fd:00 1705055                            /petrobras/exata/lib/ca/novell-ldap.jar
+c2317000-c2363000 r-xs 002dd000 fd:00 1709314                            /petrobras/exata/lib/batiksvg/batik-all.jar
+c2363000-c2364000 r-xs 00001000 fd:00 1709283                            /petrobras/exata/lib/hibernate/hibernate-c3p0-3.3.1.GA.jar
+c2364000-c236c000 r-xs 00057000 fd:00 1705046                            /petrobras/exata/lib/taglib/standard.jar
+c236c000-c236d000 r-xs 00001000 fd:00 1705222                            /petrobras/exata/lib/log4j/slf4j-jcl-1.5.6.jar
+c236d000-c2370000 r-xs 0002b000 fd:00 1705252                            /petrobras/exata/lib/exata/AcessoBinariosExata.jar
+c2370000-c2371000 r-xs 00002000 fd:00 1705237                            /petrobras/exata/lib/exata/XMLLogsMudloggingLib.jar
+c2371000-c2372000 r-xs 0000a000 fd:00 1705248                            /petrobras/exata/lib/exata/PersistenciaExata.jar
+c2372000-c2375000 r-xs 0000e000 fd:00 1705272                            /petrobras/exata/lib/hibernate/hibernate-commons-annotations.jar
+c2375000-c2388000 r-xs 000be000 fd:00 1705051                            /petrobras/exata/lib/jgeotoolkit/jcarnacpro.jar
+c2388000-c238a000 r-xs 0000b000 fd:00 1709291                            /petrobras/exata/lib/jasper/qrcode.jar
+c238a000-c238d000 r-xs 00014000 fd:00 1709295                            /petrobras/exata/lib/jasper/barbecue-1.5-beta1.jar
+c238d000-c23a7000 r-xs 00139000 fd:00 1709432                            /petrobras/exata/lib/mydoggy/swingx-0.9.1.jar
+c23a7000-c23aa000 r-xs 00004000 fd:00 1709431                            /petrobras/exata/lib/mydoggy/mydoggy-res-1.5.0.jar
+c23aa000-c23ad000 r-xs 00025000 fd:00 1709288                            /petrobras/exata/lib/dbcp/commons-dbcp-1.4.jar
+c23ad000-c23b4000 r-xs 00037000 fd:00 1709422                            /petrobras/exata/lib/junit/junit.jar
+c23b4000-c23b6000 r-xs 00003000 fd:00 1705271                            /petrobras/exata/lib/hibernate/asm-attrs.jar
+c23b6000-c23b8000 r-xs 00011000 fd:00 1705235                            /petrobras/exata/lib/exata/ComunicacaoProcessos.jar
+c23b8000-c23c4000 r-xs 000a6000 fd:00 1709294                            /petrobras/exata/lib/jasper/jxl.jar
+c23c4000-c2400000 r-xs 0030a000 fd:00 1709298                            /petrobras/exata/lib/jasper/jasperreports-javaflow-4.5.0.jar
+c2400000-c24fa000 rwxp 00000000 00:00 0 
+c24fa000-c2500000 ---p 00000000 00:00 0 
+c2500000-c2600000 rwxp 00000000 00:00 0 
+c2600000-c26fd000 rwxp 00000000 00:00 0 
+c26fd000-c2700000 ---p 00000000 00:00 0 
+c2700000-c2900000 r-xp 00000000 fd:00 2232371                            /usr/lib/locale/locale-archive
+c2900000-c29ff000 rwxp 00000000 00:00 0 
+c29ff000-c2a00000 ---p 00000000 00:00 0 
+c2a00000-c2a02000 r-xs 0000a000 fd:00 4850448                            /opt/jboss_510GA/lib/jboss-bootstrap.jar
+c2a02000-c2a04000 r-xs 00008000 fd:00 1709433                            /petrobras/exata/lib/mydoggy/mydoggy-api-1.5.0.jar
+c2a04000-c2a06000 r-xs 00001000 fd:00 1705273                            /petrobras/exata/lib/hibernate/jta.jar
+c2a06000-c2a0a000 r-xs 00030000 fd:00 1705047                            /petrobras/exata/lib/taglib/displaytag-1.1.jar
+c2a0a000-c2a27000 r-xs 0017c000 fd:00 1709321                            /petrobras/exata/lib/file/poi-3.7.jar
+c2a27000-c2a2e000 r-xs 00077000 fd:00 1705266                            /petrobras/exata/lib/hibernate/javassist.jar
+c2a2e000-c2a31000 ---p 00000000 00:00 0 
+c2a31000-c2a7f000 rwxp 00000000 00:00 0 
+c2a7f000-c2a82000 ---p 00000000 00:00 0 
+c2a82000-c2b00000 rwxp 00000000 00:00 0 
+c2b00000-c2bf8000 rwxp 00000000 00:00 0 
+c2bf8000-c2c00000 ---p 00000000 00:00 0 
+c2c01000-c2c02000 r-xs 00002000 fd:00 1705268                            /petrobras/exata/lib/hibernate/hibernate-jmx.jar
+c2c02000-c2c04000 r-xs 00002000 fd:00 1705236                            /petrobras/exata/lib/exata/XmlWitsLib.jar
+c2c04000-c2c06000 r-xs 00004000 fd:00 1705230                            /petrobras/exata/lib/exata/BancoDados.jar
+c2c06000-c2c17000 r-xs 000c3000 fd:00 1709430                            /petrobras/exata/lib/mydoggy/mydoggy-plaf-1.5.0.jar
+c2c17000-c2c1a000 ---p 00000000 00:00 0 
+c2c1a000-c2c98000 rwxp 00000000 00:00 0 
+c2c98000-c2c9b000 ---p 00000000 00:00 0 
+c2c9b000-c2ce9000 rwxp 00000000 00:00 0 
+c2ce9000-c2cea000 ---p 00000000 00:00 0 
+c2cea000-c2d6a000 rwxp 00000000 00:00 0 
+c2d6a000-c2f00000 r-xs 02fb6000 fd:00 3024993                            /usr/java/jdk1.6.0_17/jre/lib/rt.jar
+c2f00000-c2ffa000 rwxp 00000000 00:00 0 
+c2ffa000-c3000000 ---p 00000000 00:00 0 
+c3000000-c3001000 r-xs 00002000 fd:00 1709317                            /petrobras/exata/lib/batiksvg/batik-ext.jar
+c3001000-c300a000 r-xs 00064000 fd:00 1709293                            /petrobras/exata/lib/jasper/jasperreports-applet-4.5.0.jar
+c300a000-c300d000 r-xs 00036000 fd:00 1705247                            /petrobras/exata/lib/exata/painelVisualizacaoApplet.jar
+c300d000-c300f000 r-xs 00002000 fd:00 1705142                            /petrobras/exata/lib/web/ejb.jar
+c300f000-c3023000 r-xs 0010f000 fd:00 1705263                            /petrobras/exata/lib/dwr/dwr.jar
+c3023000-c3029000 r-xs 0003f000 fd:00 1709084                            /petrobras/exata/lib/hibernate/cglib-2.1.3.jar
+c3029000-c302e000 r-xs 00040000 fd:00 1705083                            /petrobras/exata/lib/bsh/bsh-2.0b4.jar
+c302e000-c3031000 ---p 00000000 00:00 0 
+c3031000-c307f000 rwxp 00000000 00:00 0 
+c307f000-c3080000 ---p 00000000 00:00 0 
+c3080000-c3100000 rwxp 00000000 00:00 0 
+c3100000-c3174000 rwxp 00000000 00:00 0 
+c3174000-c3200000 ---p 00000000 00:00 0 
+c3200000-c32b7000 rwxp 00000000 00:00 0 
+c32b7000-c3300000 ---p 00000000 00:00 0 
+c3300000-c3302000 r-xs 00004000 fd:00 1705223                            /petrobras/exata/lib/log4j/slf4j-api-1.5.6.jar
+c3302000-c3304000 r-xs 00003000 fd:00 1705056                            /petrobras/exata/lib/ca/javax-sasl.jar
+c3304000-c3308000 r-xs 00041000 fd:00 1705270                            /petrobras/exata/lib/hibernate/hibernate-annotations.jar
+c3308000-c330a000 r-xs 00004000 fd:00 1705048                            /petrobras/exata/lib/taglib/jstl-1.1.2.jar
+c330a000-c330f000 r-xs 00010000 fd:00 1709315                            /petrobras/exata/lib/batiksvg/xml-apis-ext.jar
+c330f000-c3311000 r-xs 00009000 fd:00 1709289                            /petrobras/exata/lib/dbcp/commons-pool-1.2.jar
+c3311000-c331a000 r-xs 00072000 fd:00 1705050                            /petrobras/exata/lib/jgeotoolkit/jwelllog.jar
+c331a000-c332d000 r-xp 00000000 fd:00 3159844                            /usr/java/jdk1.6.0_17/jre/lib/i386/libnet.so
+c332d000-c332e000 rwxp 00013000 fd:00 3159844                            /usr/java/jdk1.6.0_17/jre/lib/i386/libnet.so
+c332e000-c3331000 ---p 00000000 00:00 0 
+c3331000-c337f000 rwxp 00000000 00:00 0 
+c337f000-c3380000 ---p 00000000 00:00 0 
+c3380000-c3400000 rwxp 00000000 00:00 0 
+c3400000-c3441000 rwxp 00000000 00:00 0 
+c3441000-c3500000 ---p 00000000 00:00 0 
+c3500000-c3502000 r-xs 00008000 fd:00 1705052                            /petrobras/exata/lib/jgeotoolkit/int_util.jar
+c3502000-c3504000 r-xs 00011000 fd:00 1705232                            /petrobras/exata/lib/exata/ReplicadorDicionariosLib.jar
+c3504000-c3508000 r-xs 0002f000 fd:00 1705274                            /petrobras/exata/lib/hibernate/ehcache-1.2.3.jar
+c3508000-c350e000 r-xp 00000000 fd:00 3159824                            /usr/java/jdk1.6.0_17/jre/lib/i386/libmanagement.so
+c350e000-c350f000 rwxp 00005000 fd:00 3159824                            /usr/java/jdk1.6.0_17/jre/lib/i386/libmanagement.so
+c350f000-c3542000 rwxp 00000000 00:00 0 
+c3542000-c3559000 r-xs 00119000 fd:00 4850459                            /opt/jboss_510GA/lib/endorsed/xercesImpl.jar
+c3559000-c355a000 ---p 00000000 00:00 0 
+c355a000-c35da000 rwxp 00000000 00:00 0 
+c35da000-c35db000 ---p 00000000 00:00 0 
+c35db000-c368e000 rwxp 00000000 00:00 0 
+c368e000-c36db000 rwxp 00000000 00:00 0 
+c36db000-c377f000 rwxp 00000000 00:00 0 
+c377f000-c37bf000 rwxp 00000000 00:00 0 
+c37bf000-c37f2000 rwxp 00000000 00:00 0 
+c37f2000-c383f000 rwxp 00000000 00:00 0 
+c383f000-c38e3000 rwxp 00000000 00:00 0 
+c38e3000-c3922000 rwxp 00000000 00:00 0 
+c3922000-c3936000 rwxp 00000000 00:00 0 
+c3936000-c393f000 rwxp 00000000 00:00 0 
+c393f000-c9e20000 rwxp 00000000 00:00 0 
+c9e20000-d3940000 rwxp 00000000 00:00 0 
+d3940000-e8000000 rwxp 00000000 00:00 0 
+e8000000-f0060000 rwxp 00000000 00:00 0 
+f0060000-f2600000 rwxp 00000000 00:00 0 
+f2600000-f3940000 rwxp 00000000 00:00 0 
+f3940000-f3964000 rwxp 00000000 00:00 0 
+f3964000-f3a00000 rwxp 00000000 00:00 0 
+f3a00000-f42c8000 rwxp 00000000 00:00 0 
+f42c8000-f6aff000 rwxp 00000000 00:00 0 
+f6aff000-f6b00000 ---p 00000000 00:00 0 
+f6b00000-f6b01000 r-xs 00005000 fd:00 1705054                            /petrobras/exata/lib/ca/saxpath.jar
+f6b01000-f6b03000 r-xs 00014000 fd:00 1705163                            /petrobras/exata/lib/web/servlet-api.jar
+f6b03000-f6b16000 r-xs 00190000 fd:00 4850462                            /opt/jboss_510GA/lib/endorsed/xalan.jar
+f6b16000-f6b22000 r-xp 00000000 fd:00 795137                             /lib/libnss_files-2.12.so
+f6b22000-f6b23000 r-xp 0000b000 fd:00 795137                             /lib/libnss_files-2.12.so
+f6b23000-f6b24000 rwxp 0000c000 fd:00 795137                             /lib/libnss_files-2.12.so
+f6b24000-f6b3b000 r-xp 00000000 fd:00 795131                             /lib/libnsl-2.12.so
+f6b3b000-f6b3c000 r-xp 00016000 fd:00 795131                             /lib/libnsl-2.12.so
+f6b3c000-f6b3d000 rwxp 00017000 fd:00 795131                             /lib/libnsl-2.12.so
+f6b3d000-f6b3f000 rwxp 00000000 00:00 0 
+f6b3f000-f6b41000 r-xs 0000a000 fd:00 4850512                            /opt/jboss_510GA/lib/endorsed/jbossws-native-jaxws.jar
+f6b41000-f6b43000 r-xs 00004000 fd:00 4850509                            /opt/jboss_510GA/lib/endorsed/jbossws-native-jaxws-ext.jar
+f6b43000-f6b45000 r-xs 00013000 fd:00 4850464                            /opt/jboss_510GA/lib/endorsed/resolver.jar
+f6b45000-f6b47000 r-xs 00005000 fd:00 4850463                            /opt/jboss_510GA/lib/endorsed/stax-api.jar
+f6b47000-f6b4a000 r-xs 00017000 fd:00 4850461                            /opt/jboss_510GA/lib/endorsed/jaxb-api.jar
+f6b4a000-f6b4c000 r-xs 00005000 fd:00 4850504                            /opt/jboss_510GA/lib/endorsed/jbossws-native-saaj.jar
+f6b4c000-f6b4e000 r-xs 0000e000 fd:00 4850460                            /opt/jboss_510GA/lib/endorsed/activation.jar
+f6b4e000-f6b50000 r-xs 00006000 fd:00 4850503                            /opt/jboss_510GA/lib/endorsed/jbossws-native-jaxrpc.jar
+f6b50000-f6b5f000 r-xp 00000000 fd:00 3159836                            /usr/java/jdk1.6.0_17/jre/lib/i386/libzip.so
+f6b5f000-f6b61000 rwxp 0000e000 fd:00 3159836                            /usr/java/jdk1.6.0_17/jre/lib/i386/libzip.so
+f6b61000-f6b84000 r-xp 00000000 fd:00 3159829                            /usr/java/jdk1.6.0_17/jre/lib/i386/libjava.so
+f6b84000-f6b86000 rwxp 00023000 fd:00 3159829                            /usr/java/jdk1.6.0_17/jre/lib/i386/libjava.so
+f6b86000-f6b89000 ---p 00000000 00:00 0 
+f6b89000-f6bd7000 rwxp 00000000 00:00 0 
+f6bd7000-f72a4000 r-xp 00000000 fd:00 402981                             /usr/java/jdk1.6.0_17/jre/lib/i386/server/libjvm.so
+f72a4000-f72f2000 rwxp 006cc000 fd:00 402981                             /usr/java/jdk1.6.0_17/jre/lib/i386/server/libjvm.so
+f72f2000-f7716000 rwxp 00000000 00:00 0 
+f7716000-f771d000 r-xp 00000000 fd:00 270197                             /usr/java/jdk1.6.0_17/jre/lib/i386/jli/libjli.so
+f771d000-f771f000 rwxp 00006000 fd:00 270197                             /usr/java/jdk1.6.0_17/jre/lib/i386/jli/libjli.so
+f771f000-f7720000 r-xs 0000c000 fd:00 1707784                            /petrobras/exata/lib/cli/commons-cli-1.3.1.jar
+f7720000-f7724000 r-xs 0002b000 fd:00 4850458                            /opt/jboss_510GA/lib/endorsed/serializer.jar
+f7724000-f772c000 rwxs 00000000 fd:00 5113228                            /tmp/hsperfdata_acpm/8135
+f772c000-f7732000 r-xp 00000000 fd:00 532097                             /usr/java/jdk1.6.0_17/jre/lib/i386/native_threads/libhpi.so
+f7732000-f7733000 rwxp 00006000 fd:00 532097                             /usr/java/jdk1.6.0_17/jre/lib/i386/native_threads/libhpi.so
+f7733000-f7734000 rwxp 00000000 00:00 0 
+f7734000-f7735000 r-xp 00000000 00:00 0 
+f7735000-f7740000 r-xp 00000000 fd:00 3159834                            /usr/java/jdk1.6.0_17/jre/lib/i386/libverify.so
+f7740000-f7741000 rwxp 0000b000 fd:00 3159834                            /usr/java/jdk1.6.0_17/jre/lib/i386/libverify.so
+f7741000-f7742000 rwxp 00000000 00:00 0 
+f7742000-f7743000 r-xp 00000000 00:00 0                                  [vdso]
+ffef4000-fff09000 rwxp 00000000 00:00 0                                  [stack]
+
+VM Arguments:
+jvm_args: -Dprogram.name=run.sh -Xms128m -Xmx512m -XX:MaxPermSize=256m -Dorg.jboss.resolver.warning=true -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Djava.net.preferIPv4Stack=true -Djava.endorsed.dirs=/opt/jboss/lib/endorsed 
+java_command: org.jboss.Main -b 0.0.0.0 -Djava.rmi.server.hostname=10.162.4.120 -Dremoting.bind_by_host=false
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/usr/java/jdk1.6.0_17
+JRE_HOME=/usr/java/jdk1.6.0_17/jre/
+CLASSPATH=/usr/java/jdk1.6.0_17/lib/:.
+PATH=/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/java/jdk1.6.0_17/bin:/usr/local/apache-maven-2.2.1/bin:/home/acpm/bin:/usr/java/jdk1.6.0_17/bin
+USERNAME=acpm
+LD_LIBRARY_PATH=/usr/java/jdk1.6.0_17/jre/lib/i386/server:/usr/java/jdk1.6.0_17/jre/lib/i386:/usr/java/jdk1.6.0_17/jre/../lib/i386
+SHELL=/bin/bash
+DISPLAY=localhost:0.0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x650710], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x650710], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x52f600], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x52f600], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x52f600], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x52f600], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x5321f0], sa_mask[0]=0x00000000, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x531f20], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x531f20], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x531f20], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x531f20], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:CentOS release 6.5 (Final)
+
+uname:Linux 2.6.32-431.17.1.el6.centos.plus.x86_64 #1 SMP Thu May 8 02:18:11 UTC 2014 x86_64
+libc:glibc 2.12 NPTL 2.12 
+rlimit: STACK 10240k, CORE 0k, NPROC 1024, NOFILE 4096, AS infinity
+load average:0.42 0.38 0.46
+
+CPU:total 4 (16 cores per cpu, 2 threads per core) family 6 model 45 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, ht
+
+Memory: 4k page, physical 32834592k(262800k free), swap 4194296k(4141848k free)
+
+vm_info: Java HotSpot(TM) Server VM (14.3-b01) for linux-x86 JRE (1.6.0_17-b04), built on Oct 11 2009 01:01:36 by "java_re" with gcc 3.2.1-7a (J2SE release)
+
+time: Thu Mar 17 15:31:56 2016
+elapsed time: 1461 seconds
+
