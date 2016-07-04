@@ -14,5 +14,7 @@
 			type="password" name="usuario.senha" /><br /> <input type="submit"
 			value="Autenticar" />
 	</form>
+	<c:import url="../_comum/rodape.jsp" />
 </body>
+
 </html>

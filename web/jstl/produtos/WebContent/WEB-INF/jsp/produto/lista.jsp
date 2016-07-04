@@ -1,9 +1,10 @@
-<%@page import="br.com.caelum.produtos.modelo.Produto"%>
-<%@page import="java.util.List"%>
+<%@ page import="br.com.caelum.produtos.modelo.Produto"%>
+<%@ page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -21,6 +22,9 @@
 	</script>
 
 	<h1>Produtos</h1>
+	<h2>
+		<fmt:message key="mensagem.bemvindo" />
+	</h2>
 	<div id="mensagem"></div>
 	<table width="100%">
 		<tr>
@@ -38,22 +42,24 @@
 			<tr id="produto${p.id}">
 				<td>${st.count}</td>
 				<td>${fn:toUpperCase(p.nome)}</td>
-				<td>${p.preco}</td>
+				<td><fmt:formatNumber value="${p.preco}" type="currency" /></td>
 				<td>${p.descricao}</td>
-				<td>${p.dataInicioVenda.time}</td>
-				<c:choose>
-					<c:when test="${p.usado}">
-						<td>Sim</td>
-					</c:when>
-					<c:otherwise>
-						<td>Não</td>
-					</c:otherwise>
-				</c:choose>
+				<td><fmt:formatDate value="${p.dataInicioVenda.time}"
+						pattern="dd/MM/yyyy" /></td>
+				<c:if test="${p.usado}">
+					<td>Sim</td>
+				</c:if>
+				<c:if test="${not p.usado}">
+					<td>Não</td>
+				</c:if>
 				<td><a href="#" onclick="return removeProduto(${p.id})">Remover</a>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="/produtos/produto/formulario">Adicionar um produto</a>
+	<a href="<c:url value="/produto/formulario"/>"><fmt:message
+			key="mensagem.novoProduto" /></a>
+	<c:import url="../_comum/rodape.jsp" />
 </body>
+
 </html>

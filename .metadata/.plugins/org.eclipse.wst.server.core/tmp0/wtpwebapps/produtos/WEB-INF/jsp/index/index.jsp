@@ -6,5 +6,6 @@
 </head>
 <body>
 	<h2>Pagina inicial do Sistema de Controle de Produtos</h2>
+	<c:import url="../_comum/rodape.jsp" />
 </body>
 </html>
