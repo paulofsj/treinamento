@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;persistence.xml&apos; to &apos;lib&apos;" description="Move &apos;persistence.xml&apos; to &apos;lib&apos;" destination="WebContent/WEB-INF/lib" element1="src/META-INF/persistence.xml" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1467647682886" updateReferences="true"/>
+</session>

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Transient;
 
 @Entity
 public class Livro {
@@ -23,6 +26,7 @@ public class Livro {
 	@ManyToMany
 	private List<Autor> autores = new ArrayList<Autor>();
 
+	
 	public List<Autor> getAutores() {
 		return autores;
 	}
