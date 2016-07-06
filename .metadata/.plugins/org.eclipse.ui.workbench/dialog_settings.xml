@@ -4,35 +4,30 @@
 		<item value="1188" key="dialogWidth"/>
 		<item value="663" key="dialogHeight"/>
 		<list key="orderedProviders">
-			<item value="org.eclipse.ui.actions"/>
 		</list>
 		<list key="textArray">
-			<item value="gga"/>
-			<item value="ggas"/>
 		</list>
 		<list key="orderedElements">
-			<item value="org.eclipse.jdt.ui.actions.GenerateGetterSetter"/>
 		</list>
 		<list key="textEntries">
-			<item value="2"/>
 		</list>
 	</section>
 	<section name="WorkbenchPreferenceDialogSettings">
 		<item value="-76" key="DIALOG_Y_ORIGIN"/>
 		<item value="-60" key="DIALOG_X_ORIGIN"/>
 	</section>
+	<section name="InstallationDialogSettings">
+		<item value="692" key="DIALOG_WIDTH"/>
+		<item value="-311" key="DIALOG_Y_ORIGIN"/>
+		<item value="740" key="DIALOG_HEIGHT"/>
+		<item value="15" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
 	<section name="ZipFileImportWizard">
 		<item value="true" key="WizardZipFileResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID"/>
 		<list key="WizardZipFileResourceImportPage1.STORE_SOURCE_NAMES_ID">
 			<item value="/tmp/curso-jstl.zip"/>
 		</list>
-	</section>
-	<section name="InstallationDialogSettings">
-		<item value="692" key="DIALOG_WIDTH"/>
-		<item value="-311" key="DIALOG_Y_ORIGIN"/>
-		<item value="15" key="DIALOG_X_ORIGIN"/>
-		<item value="740" key="DIALOG_HEIGHT"/>
-		<item value="1|Sans|10.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="ImportExportAction">
 		<item value="org.eclipse.ui.wizards.import.ExternalProject" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
