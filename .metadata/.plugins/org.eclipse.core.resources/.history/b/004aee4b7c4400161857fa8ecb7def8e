@@ -42,35 +42,36 @@
 
 
 			</h:panelGrid>
-		</fieldset>
 
-		<fieldset>
-			<legend>Dados do Autor</legend>
-			<h:outputLabel value="Selecione Autor:" for="autor" />
-			<h:selectOneMenu value="#{livroBean.autorId}" id="autor">
-				<f:selectItems value="#{livroBean.autores}" var="autor"
-					itemLabel="#{autor.nome}" itemValue="#{autor.id}" />
-			</h:selectOneMenu>
-			<h:commandButton value="Gravar Autor"
-				action="#{livroBean.gravarAutor}">
-				<f:ajax execute="autor" render="tabelaAutores" />
+
+			<fieldset>
+				<legend>Dados do Autor</legend>
+				<h:outputLabel value="Selecione Autor:" for="autor" />
+				<h:selectOneMenu value="#{livroBean.autorId}" id="autor">
+					<f:selectItems value="#{livroBean.autores}" var="autor"
+						itemLabel="#{autor.nome}" itemValue="#{autor.id}" />
+				</h:selectOneMenu>
+				<h:commandButton value="Gravar Autor"
+					action="#{livroBean.gravarAutor}">
+					<f:ajax execute="autor" render="tabelaAutores" />
+				</h:commandButton>
+
+				<h:dataTable value="#{livroBean.autoresDoLivro}" var="autor"
+					id="tabelaAutores">
+					<h:column>
+						<h:outputText value="#{autor.nome}" />
+					</h:column>
+				</h:dataTable>
+			</fieldset>
+
+
+
+			<h:commandButton value="Gravar" action="#{livroBean.gravar}">
+				<f:ajax execute="@form" render="@form :tabelaLivros" />
 			</h:commandButton>
-
-			<h:dataTable value="#{livroBean.autoresDoLivro}" var="autor"
-				id="tabelaAutores">
-				<h:column>
-					<h:outputText value="#{autor.nome}" />
-				</h:column>
-			</h:dataTable>
-		</fieldset>
-
-
-
-		<h:commandButton value="Gravar" action="#{livroBean.gravar}">
-			<f:ajax execute="@form" render="@form :tabelaLivros" />
-		</h:commandButton>
 	</h:form>
-
+	
+	</fieldset>
 	<fieldset>
 		<legend>Livros cadastrados</legend>
 		<h:dataTable id="tabelaLivros" value="#{livroBean.livros}" var="livro">

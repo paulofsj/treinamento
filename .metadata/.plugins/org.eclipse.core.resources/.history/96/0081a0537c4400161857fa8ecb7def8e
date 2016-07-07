@@ -42,7 +42,7 @@
 
 
 			</h:panelGrid>
-		</fieldset>
+		
 
 		<fieldset>
 			<legend>Dados do Autor</legend>
