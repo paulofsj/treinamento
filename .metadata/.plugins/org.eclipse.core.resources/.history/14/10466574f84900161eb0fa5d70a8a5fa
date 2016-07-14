@@ -1,0 +1,43 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="titulo">
+	            Novo Autor
+	    </ui:define>
+	<ui:define name="conteudo">
+		<h:form>
+			<fieldset>
+				<legend>Dados do Autor</legend>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Nome:" for="nome" />
+					<h:inputText id="nome" value="#{autorBean.autor.nome}" />
+					<h:commandButton value="Gravar" action="#{autorBean.gravar}" />
+				</h:panelGrid>
+			</fieldset>
+		</h:form>
+
+		<h:dataTable value="#{autorBean.autores}" var="autor"
+			id="tabelaAutores">
+			<h:column>
+				<h:outputText value="#{autor.nome}" />
+			</h:column>
+
+<!-- 			<h:column> -->
+<!-- 				<h:commandLink id="link" value="X" -->
+<!-- 					action="#{livroBean.removerAutorDoLivro(autor)}" immediate="true"> -->
+<!-- 					<f:ajax execute="link" render="@form" /> -->
+<!-- 				</h:commandLink> -->
+<!-- 			</h:column> -->
+		</h:dataTable>
+
+	</ui:define>
+
+	<ui:define name="texto">
+	  Cadastro de Autores
+	</ui:define>
+</ui:composition>
+</html>

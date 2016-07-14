@@ -68,6 +68,12 @@
 					<h:column>
 						<h:outputText value="#{autor.nome}" />
 					</h:column>
+
+					<h:column>
+						<h:commandLink id="link" value="X" action="#{livroBean.removerAutorDoLivro(autor)}" immediate="true">
+							<f:ajax execute="link" render="@form" />
+						</h:commandLink>
+					</h:column>
 				</h:dataTable>
 			</fieldset>
 
@@ -107,11 +113,12 @@
 
 				<h:column>
 					<f:facet name="header">Alterar</f:facet>
-					<h:commandLink value="Altera" action="#{livroBean.seleciona(livro)}">
+					<h:commandLink value="Altera"
+						action="#{livroBean.seleciona(livro)}">
 						<f:ajax render=":formLivro" />
 					</h:commandLink>
 				</h:column>
-				
+
 				<h:column>
 					<f:facet name="header">Remover</f:facet>
 					<h:commandLink value="Remover" action="#{livroBean.remover(livro)}">

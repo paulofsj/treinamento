@@ -9,7 +9,7 @@
 	            Novo Autor
 	    </ui:define>
 	<ui:define name="conteudo">
-		<h:form>
+		<h:form id="formAutor">
 			<fieldset>
 				<legend>Dados do Autor</legend>
 				<h:panelGrid columns="2">
@@ -19,6 +19,32 @@
 				</h:panelGrid>
 			</fieldset>
 		</h:form>
+
+		<h:form>
+			<h:dataTable value="#{autorBean.autores}" var="autor"
+				id="tabelaAutores">
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{autor.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Alterar</f:facet>
+					<h:commandLink id="linkAlterar" value="X"
+						action="#{autorBean.alterarAutor(autor)}" immediate="true">
+						<f:ajax execute="linkAlterar" render=":formAutor" />
+					</h:commandLink>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Remover</f:facet>
+					<h:commandLink id="link" value="X"
+						action="#{autorBean.removerAutor(autor)}" immediate="true">
+						<f:ajax execute="link" render="@form" />
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+
 	</ui:define>
 
 	<ui:define name="texto">

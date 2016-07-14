@@ -9061,3 +9061,6 @@ org.apache.http.ConnectionClosedException: Premature end of Content-Length delim
 	at org.eclipse.ecf.provider.filetransfer.retrieve.AbstractRetrieveFileTransfer$1.performFileTransfer(AbstractRetrieveFileTransfer.java:178)
 	at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:73)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.eclipse.jst.server.core 4 0 2016-07-14 16:31:07.749
+!MESSAGE Could not launch in profiling mode because no profilers are configured.
