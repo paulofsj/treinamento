@@ -1,0 +1,16 @@
+127.0.0.1 - - [13/Jul/2016:07:58:57 -0300] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [13/Jul/2016:08:03:21 -0300] "GET / HTTP/1.1" 404 994
+10.162.114.154 - - [13/Jul/2016:08:04:14 -0300] "GET /livraria/livro.xhtml HTTP/1.1" 500 4102
+10.162.114.154 - - [13/Jul/2016:08:04:17 -0300] "GET /favicon.ico HTTP/1.1" 404 1016
+10.162.114.154 - - [13/Jul/2016:08:07:11 -0300] "GET /livraria/livro.xhtml HTTP/1.1" 500 22756
+10.162.114.154 - - [13/Jul/2016:08:09:00 -0300] "GET /livraria/livro.xhtml HTTP/1.1" 500 22756
+10.162.114.154 - - [13/Jul/2016:08:09:28 -0300] "GET /livraria/livro.xhtml HTTP/1.1" 200 4574
+10.162.114.154 - - [13/Jul/2016:08:09:28 -0300] "GET /livraria/javax.faces.resource/logo.png.xhtml;jsessionid=8E2505D6AD52F0A30A81CD6EBA4D498F?ln=img HTTP/1.1" 200 12682
+10.162.114.154 - - [13/Jul/2016:08:09:28 -0300] "GET /livraria/javax.faces.resource/jsf.js.xhtml;jsessionid=8E2505D6AD52F0A30A81CD6EBA4D498F?ln=javax.faces HTTP/1.1" 200 29850
+10.162.114.154 - - [13/Jul/2016:08:10:01 -0300] "POST /livraria/livro.xhtml;jsessionid=8E2505D6AD52F0A30A81CD6EBA4D498F HTTP/1.1" 302 -
+10.162.114.154 - - [13/Jul/2016:08:10:01 -0300] "GET /livraria/autor.xhtml HTTP/1.1" 200 887
+10.162.114.154 - - [13/Jul/2016:08:14:30 -0300] "GET /livraria/autor.xhtml HTTP/1.1" 200 966
+10.162.114.154 - - [13/Jul/2016:08:14:30 -0300] "GET /livraria/javax.faces.resource/logo.png.xhtml?ln=img HTTP/1.1" 200 12682
+10.162.114.154 - - [13/Jul/2016:08:14:39 -0300] "GET /livraria/livro.xhtml HTTP/1.1" 200 4480
+10.162.114.154 - - [13/Jul/2016:08:14:39 -0300] "GET /livraria/javax.faces.resource/jsf.js.xhtml?ln=javax.faces HTTP/1.1" 200 29850
+10.162.114.154 - - [13/Jul/2016:08:14:39 -0300] "GET /livraria/javax.faces.resource/logo.png.xhtml?ln=img HTTP/1.1" 304 -

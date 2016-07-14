@@ -49,12 +49,17 @@ public class LivroBean {
 
 		if (livro.getAutores().isEmpty()) {
 			 FacesContext.getCurrentInstance().addMessage("autor", new FacesMessage("Livro deve ter pelo menos um Autor."));
-			    
 		}
 
-		new DAO<Livro>(Livro.class).adiciona(this.livro);
+		if(livro.getId() != null) new DAO<Livro>(Livro.class).atualiza(this.livro);
+		else new DAO<Livro>(Livro.class).adiciona(this.livro);
 		
 		this.livro = new Livro();
+	}
+	
+	public void remover(Livro livro){
+		System.out.println("removendo livro " + livro.getTitulo());
+		new DAO<Livro>(Livro.class).remove(livro);
 	}
 
 	public List<Autor> getAutoresDoLivro() {
@@ -65,11 +70,18 @@ public class LivroBean {
 		  return new DAO<Livro>(Livro.class).listaTodos();
 	}
 	
+	public void seleciona(Livro livro){
+		
+		this.livro = (new DAO<Livro>(Livro.class)).carregaAutores(livro);
+	}
+	
 	public void comecaComDigitoUm(FacesContext context, UIComponent component, Object value){
 		String isbn = (String) value;
-		if(!isbn.startsWith("1")){
-			FacesMessage message = new FacesMessage("ISBN deve começar com 1");
+		if(!isbn.startsWith("9")){
+			FacesMessage message = new FacesMessage("ISBN deve começar com 9");
 			throw new ValidatorException(message);
 		}
 	}
+	
+	
 }
