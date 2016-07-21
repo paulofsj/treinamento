@@ -6,10 +6,11 @@
 
 	<persistence-unit name="livraria" transaction-type="RESOURCE_LOCAL">
 
-   		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		
-		<class>br.com.caelum.livraria.modelo.Livro</class>
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
 		<class>br.com.caelum.livraria.modelo.Autor</class>
+		<class>br.com.caelum.livraria.modelo.Livro</class>
+		<class>br.com.caelum.livraria.modelo.Usuario</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

@@ -38,4 +38,12 @@ public class AutorBean {
 	public void removerAutor(Autor autor){
 		new DAO<Autor>(Autor.class).remove(autor);
 	}
+	
+	public void carregaPelaId() {
+	    Integer id = this.autor.getId();
+	    this.autor = new DAO<Autor>(Autor.class).buscaPorId(id);
+	    if (this.autor == null) {
+	            this.autor = new Autor();
+	    }
+	}
 }

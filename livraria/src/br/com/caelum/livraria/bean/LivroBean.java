@@ -87,6 +87,11 @@ public class LivroBean {
 		this.livro = (new DAO<Livro>(Livro.class)).carregaAutores(livro);
 	}
 	
+	public void carregaPelaId() {
+        this.livro = new DAO<Livro>(Livro.class).buscaPorId(this.livro.getId());
+//        this.livro = (new DAO<Livro>(Livro.class)).carregaAutores(livro);
+    }
+	
 	public void comecaComDigitoUm(FacesContext context, UIComponent component, Object value){
 		String isbn = (String) value;
 		if(!isbn.startsWith("9")){
