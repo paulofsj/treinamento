@@ -2,36 +2,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="_template.xhtml">
 
 
 	<ui:define name="titulo">
-	            Login
-	    </ui:define>
-	<ui:define name="conteudo">
-		<h:messages id="messages" globalOnly="true"/>
-		<h:form id="formLogin">
-			<fieldset>
-				<legend>Login</legend>
-				<h:panelGrid columns="2">
-					<h:outputLabel value="Email:" for="email" />
-					<h:inputText id="email" value="#{loginBean.usuario.email}" required="true">
-						<f:passThroughAttribute name="type" value="email" />
-					</h:inputText>
-
-					<h:outputLabel value="Senha:" for="senha" />
-					<h:inputSecret value="#{loginBean.usuario.senha}" id="senha" required="true"/>
-
-					<h:commandButton value="Gravar" action="#{loginBean.autenticar}" />
-				</h:panelGrid>
-			</fieldset>
-		</h:form>
-
-
+		<p:outputPanel>Login</p:outputPanel>
 	</ui:define>
+	<ui:define name="conteudo">
+		<p:messages id="messages" globalOnly="true" />
+		<h:form id="login">
+			<p:fieldset legend="Login">
+				<h:panelGrid columns="3">
 
+					<p:outputLabel value="Email:" for="email" />
+					<p:inputText id="email" value="#{loginBean.usuario.email}"
+						required="true" requiredMessage="Email obrigatorio!"
+						validatorMessage="favor inseriri email corretamente"
+						onblur="dd">
+						<f:attribute name="type" value="email" />
+						<f:passThroughAttribute name="placeholder" value="Email do usuário" />
+						<f:validateRegex pattern=".+@.+" />
+						<f:ajax event="blur" render="messageEmail" />
+					</p:inputText>
+					<p:message for="email" id="messageEmail" />
+
+					<p:outputLabel value="Senha:" for="senha" />
+					<p:password id="senha" value="#{loginBean.usuario.senha}"
+						feedback="true" required="true" promptLabel="Digite a sua senha"
+						weakLabel="Fraca" goodLabel="Bom" strongLabel="Forte" />
+					<p:message for="senha" id="messageSenha" />
+
+					<p:commandButton value="Efetue Login"
+						action="#{loginBean.autenticar}" update="@all" process="@form" />
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
+	</ui:define>
 	<ui:define name="texto">
 	  Login de usuários
 	</ui:define>

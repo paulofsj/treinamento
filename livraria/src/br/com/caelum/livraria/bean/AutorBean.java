@@ -17,6 +17,10 @@ public class AutorBean {
 	public Autor getAutor() {
 		return autor;
 	}
+	
+	public void setAutor(Autor autor) {
+		this.autor = autor;
+	}
 
 	public void alterarAutor(Autor autor){
 		this.autor = autor;
@@ -37,6 +41,7 @@ public class AutorBean {
 	
 	public void removerAutor(Autor autor){
 		new DAO<Autor>(Autor.class).remove(autor);
+		this.autor = new Autor();
 	}
 	
 	public void carregaPelaId() {
@@ -45,5 +50,9 @@ public class AutorBean {
 	    if (this.autor == null) {
 	            this.autor = new Autor();
 	    }
+	}
+	
+	public void limpar(){
+		this.autor = new Autor();
 	}
 }

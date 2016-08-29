@@ -29,7 +29,7 @@ public class LoginBean {
 			return "livro?faces-redirect=true";
 		}
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-		FacesContext.getCurrentInstance().addMessage("email", new FacesMessage("Usuário ou senha inválido."));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Usuário ou senha inválido."));
 		return "login?faces-redirect=true";
 	}
 	
@@ -39,3 +39,4 @@ public class LoginBean {
 		return "login?faces-redirect=true";
 	}
 }
+	
