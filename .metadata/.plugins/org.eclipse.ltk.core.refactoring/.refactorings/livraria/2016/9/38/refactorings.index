@@ -1,0 +1,4 @@
+1473956189785	Extract local variable 'dao'
+1473956206945	Extract local variable 'listaLivros'
+1473956305538	Extract local variable 'dao'
+1473958410458	Encapsulate field 'filteredLivros'

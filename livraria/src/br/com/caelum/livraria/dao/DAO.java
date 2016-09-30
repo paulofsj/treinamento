@@ -1,9 +1,12 @@
 package br.com.caelum.livraria.dao;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.hibernate.Hibernate;
 
@@ -75,28 +78,42 @@ public class DAO<T> {
 
 	public int contaTodos() {
 		EntityManager em = new JPAUtil().getEntityManager();
-		long result = (Long) em.createQuery("select count(n) from livro n")
-				.getSingleResult();
+		long result = (Long) em.createQuery("select count(n) from livro n").getSingleResult();
 		em.close();
 
 		return (int) result;
 	}
 
-	public List<T> listaTodosPaginada(int firstResult, int maxResults) {
+	public int quantidadeDeElementos() {
+		EntityManager em = new JPAUtil().getEntityManager();
+		long result = (Long) em.createQuery("select count(n) from " + classe.getSimpleName() + " n").getSingleResult();
+		em.close();
+
+		return (int) result;
+	}
+
+	public List<T> listaTodosPaginada(int firstResult, int maxResults, Map<String, Object> filters) {
 		EntityManager em = new JPAUtil().getEntityManager();
 		CriteriaQuery<T> query = em.getCriteriaBuilder().createQuery(classe);
-		query.select(query.from(classe));
+		Root<T> root = query.from(classe);
 
-		List<T> lista = em.createQuery(query).setFirstResult(firstResult)
-				.setMaxResults(maxResults).getResultList();
+		if (filters != null) {
+			for (Iterator<String> it = filters.keySet().iterator(); it.hasNext();) {
+				String filterProperty = it.next();
+				String filterValue = (String) filters.get(filterProperty);
+				query.where(em.getCriteriaBuilder().like(root.<String>get(filterProperty), filterValue + "%"));
+			}
+		}
+
+		List<T> lista = em.createQuery(query).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
 
 		em.close();
 		return lista;
 	}
-	
+
 	public Livro carregaAutores(Livro livro) {
 		EntityManager em = new JPAUtil().getEntityManager();
-		livro  = em.find(Livro.class, livro.getId() );
+		livro = em.find(Livro.class, livro.getId());
 		Hibernate.initialize(livro.getAutores());
 		em.close();
 		return livro;
