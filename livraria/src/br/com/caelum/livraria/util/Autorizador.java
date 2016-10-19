@@ -19,7 +19,7 @@ public class Autorizador implements PhaseListener {
 
 	    System.out.println(nomePagina);
 
-	    if ("/login.xhtml".equals(nomePagina)) {
+	    if ("/login.xhtml".equals(nomePagina) || "/vendas.xhtml".equals(nomePagina)) {
 	        return;
 	    }
 

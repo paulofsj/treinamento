@@ -19,6 +19,18 @@ import br.com.caelum.livraria.modelo.Venda;
 @ViewScoped
 public class VendasBean {
 
+	private double psup;
+	private double psb;
+	private double pinj;
+	
+	final int n = 1600;
+    List<Number> intervals = new ArrayList<Number>(){{
+        add((int)n/4);
+        add((int)n/3);
+        add((int)n/2);
+        add(n);
+    }};
+    
    public List<Venda> getVendas(long seed) {
 
        List<Livro> livros = new DAO<Livro>(Livro.class).listaTodos();
@@ -63,21 +75,84 @@ public class VendasBean {
 	    return model;
 	}
    
-   public MeterGaugeChartModel getMeterGaugeModel1() {
-	   final int n = 1600;
-       List<Number> intervals = new ArrayList<Number>(){{
-           add((int)n/4);
-           add((int)n/3);
-           add((int)n/2);
-           add(n);
-       }};
-       List<Venda> vendas = getVendas(System.currentTimeMillis());
-       
-	   MeterGaugeChartModel meterGaugeModel1 = new MeterGaugeChartModel(vendas.get(0).getQuantidade(), intervals);
-	   meterGaugeModel1.setTitle(vendas.get(0).getLivro().getTitulo());
-       meterGaugeModel1.setGaugeLabel("Vendas");
-       meterGaugeModel1.setSeriesColors("#ffffff");
-       return meterGaugeModel1;
+   public MeterGaugeChartModel getMeterGaugeModelPSUP() {
+	   MeterGaugeChartModel meterGaugeModelPSUP = new MeterGaugeChartModel(psup, intervals);
+	   meterGaugeModelPSUP.setIntervalOuterRadius(0);
+	   meterGaugeModelPSUP.setIntervalInnerRadius(0);
+	   meterGaugeModelPSUP.setLabelHeightAdjust(100);
+//	   meterGaugeModelPSUP.setGaugeLabel("RPM");
+//	   meterGaugeModelPSUP.setGaugeLabelPosition("bottom");
+//       meterGaugeModel1.setGaugeLabel("RPM");
+	   meterGaugeModelPSUP.setSeriesColors("#ffffff,#ffffff,#ffffff,#ffffff");
+       return meterGaugeModelPSUP;
    }
+   
+   public MeterGaugeChartModel getMeterGaugeModelPSB() {
+	   MeterGaugeChartModel meterGaugeModelPSUP = new MeterGaugeChartModel(psb, intervals);
+	   meterGaugeModelPSUP.setIntervalOuterRadius(0);
+	   meterGaugeModelPSUP.setIntervalInnerRadius(0);
+	   meterGaugeModelPSUP.setLabelHeightAdjust(100);
+//	   meterGaugeModelPSUP.setGaugeLabel("RPM");
+//	   meterGaugeModelPSUP.setGaugeLabelPosition("bottom");
+//       meterGaugeModel1.setGaugeLabel("RPM");
+	   meterGaugeModelPSUP.setSeriesColors("#ffffff,#ffffff,#ffffff,#ffffff");
+       return meterGaugeModelPSUP;
+   }
+   
+   public MeterGaugeChartModel getMeterGaugeModelPINJ() {
+	   MeterGaugeChartModel meterGaugeModelPSUP = new MeterGaugeChartModel(pinj, intervals);
+	   meterGaugeModelPSUP.setIntervalOuterRadius(0);
+	   meterGaugeModelPSUP.setIntervalInnerRadius(0);
+	   meterGaugeModelPSUP.setLabelHeightAdjust(100);
+//	   meterGaugeModelPSUP.setGaugeLabel("RPM");
+//	   meterGaugeModelPSUP.setGaugeLabelPosition("bottom");
+//       meterGaugeModel1.setGaugeLabel("RPM");
+	   meterGaugeModelPSUP.setSeriesColors("#ffffff,#ffffff,#ffffff,#ffffff");
+       return meterGaugeModelPSUP;
+   }
+   
+   public void initMeterGaugeModel1(){
+	   
+       Random random = new Random(System.currentTimeMillis());
+       psup = random.nextInt(n);
+       pinj = random.nextInt(n);
+       psb = random.nextInt(n);       
+	  
+   }
+
+public double getPsup() {
+	return psup;
+}
+
+public void setPsup(double psup) {
+	this.psup = psup;
+}
+
+public double getPsb() {
+	return psb;
+}
+
+public void setPsb(double psb) {
+	this.psb = psb;
+}
+
+public double getPinj() {
+	return pinj;
+}
+
+public void setPinj(double pinj) {
+	this.pinj = pinj;
+}
+
+public List<Number> getIntervals() {
+	return intervals;
+}
+
+public void setIntervals(List<Number> intervals) {
+	this.intervals = intervals;
+}
+   
+   
+   
   
 }				

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="_template.xhtml">
+
+	<ui:define name="titulo">
+		<p:outputPanel>Vendas</p:outputPanel>
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<p:chart type="bar" model="#{vendasBean.vendasModel}"
+			style="height:300px" />
+
+		<h:form id="gauch">
+			<p:fieldset style="margin-bottom:20px">
+				<p:panelGrid columns="3">
+
+					<p:chart type="metergauge" model="#{vendasBean.meterGaugeModelPSUP}"
+						style="width:200px;height:200px" id="gau" />
+
+					<p:chart type="metergauge" model="#{vendasBean.meterGaugeModelPSB}"
+						style="width:200px;height:200px" id="gau1" />
+
+
+					<p:chart type="metergauge" model="#{vendasBean.meterGaugeModelPINJ}"
+						style="width:200px;height:200px" id="gau2" />
+
+
+					<p:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel  value="PSUP (ton)" />
+						<h:outputLabel  id="psup" value="#{vendasBean.psup}" />
+					</p:panelGrid>	
+					<p:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel  value="PSB (ton)" />
+						<h:outputLabel  id="psb" value="#{vendasBean.psb}" />
+					</p:panelGrid>	
+					<p:panelGrid columns="2" cellpadding="5">
+						<h:outputLabel  value="PINJ (ton)" />
+						<h:outputLabel  id="pinj" value="#{vendasBean.pinj}" />
+					</p:panelGrid>
+				</p:panelGrid>
+			</p:fieldset>
+			<p:poll interval="1" listener="#{vendasBean.initMeterGaugeModel1()}"
+				update="gau psup" />
+			<p:poll interval="3" listener="#{vendasBean.initMeterGaugeModel1()}"
+				update="gau1 psb" />
+			<p:poll interval="5" listener="#{vendasBean.initMeterGaugeModel1()}"
+				update="gau2 pinj" />
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+</html>
