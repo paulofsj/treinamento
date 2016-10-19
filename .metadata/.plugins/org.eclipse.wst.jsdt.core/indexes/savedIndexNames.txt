@@ -4,7 +4,6 @@ INDEX VERSION 1.3+/home/acpm/workspace/treinamento/.metadata/.plugins/org.eclips
 640095509.index
 3400156212.index
 3387836967.index
-3400156212.index
-952551199.index
 3870345084.index
+952551199.index
 195712798.index

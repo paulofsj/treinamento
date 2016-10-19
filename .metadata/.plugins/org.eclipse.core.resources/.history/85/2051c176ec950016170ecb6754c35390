@@ -19,7 +19,7 @@
 				<p:menuitem value="Autores" action="autor?faces-redirect=true"
 					icon="fa fa-fw fa-edit" />
 				<p:menuitem value="Charts" action="vendas?faces-redirect=true"
-					icon="fa fa-fw fa-charts" />
+					icon="fa fa-fw fa-chart" />
 				<p:separator />
 				
 				<p:menuitem value="Logout" action="#{loginBean.logout}"
