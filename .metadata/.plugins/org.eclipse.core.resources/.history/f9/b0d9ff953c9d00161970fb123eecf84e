@@ -1,0 +1,36 @@
+package br.com.caelum.leilao.dominio;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
+
+import br.com.caelum.leilao.servico.Avaliador;
+
+public class LeilaoTest {
+	
+	@Test
+	public void naoDeveAceitar2LancesSeguidosMesmoUsuario(){
+		Usuario joao = new Usuario("Joao");
+		Usuario jose = new Usuario("José");
+		Usuario maria = new Usuario("Maria");
+		
+		Leilao leilao = new Leilao("Playstation 3 Novo");
+
+		leilao.propoe(new Lance(maria,100.0));
+		leilao.propoe(new Lance(jose,250.0));
+		leilao.propoe(new Lance(jose,400.0));
+		
+
+		// executando a acao
+		Avaliador leiloeiro = new Avaliador();
+		leiloeiro.avalia(leilao);
+		
+		
+		assertEquals(2,leilao.getLances().size());
+		assertEquals(250.0, leilao.getLances().get(leilao.getLances().size()-1).getValor(), 0.00001);
+	}
+
+}

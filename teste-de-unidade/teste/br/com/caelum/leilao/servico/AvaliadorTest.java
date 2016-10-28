@@ -1,0 +1,196 @@
+package br.com.caelum.leilao.servico;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import br.com.caelum.leilao.builder.CriadorDeLeilao;
+import br.com.caelum.leilao.dominio.Lance;
+import br.com.caelum.leilao.dominio.Leilao;
+import br.com.caelum.leilao.dominio.Usuario;
+import junit.framework.Assert;
+
+public class AvaliadorTest {
+	
+	
+	
+	private Avaliador leiloeiro;
+	private Usuario joao;
+	private Usuario jose;
+	private Usuario maria;
+	private Usuario paulo;
+	private Usuario pedro;
+	
+	@Before
+	public void setUp(){
+		leiloeiro = new Avaliador();
+		joao = new Usuario("Joao");
+		jose = new Usuario("José");
+		maria = new Usuario("Maria");
+		paulo = new Usuario("M2");
+		pedro = new Usuario("M3");	
+	}
+
+	
+	
+	@Test
+	public void deveEntenderLeilaoComApenasUmLance(){
+		
+		Leilao leilao = new CriadorDeLeilao().para("Honda biz")
+				.lance(joao, 200.0)
+				.constroi();
+		
+		
+		leiloeiro.avalia(leilao);
+		
+		double maiorEsperado = 200;
+		double menorEsperado = 200;
+		
+		assertEquals(maiorEsperado, leiloeiro.getMaiorLance(), 0.00001);
+		assertEquals(menorEsperado, leiloeiro.getMenorLance(), 0.00001);
+	}
+	
+	@Test
+	public void deveEntenderLancesEmOrdemAleatoria() {
+		// cenario: 3 lances em ordem crescente
+		
+		Leilao leilao = new CriadorDeLeilao().para("Playstation 3 Novo")
+		.lance(jose,200.0)
+		.lance(maria,450.0)
+		.lance(joao,120.0)
+		.lance(jose,700.0)
+		.lance(jose,630.0)
+		.lance(maria,230.0).constroi();
+		
+
+		leiloeiro.avalia(leilao);
+
+		// comparando a saida com o esperado
+		double maiorEsperado = 700;
+		double menorEsperado = 120;
+
+		assertEquals(maiorEsperado, leiloeiro.getMaiorLance(), 0.0001);
+		assertEquals(menorEsperado, leiloeiro.getMenorLance(), 0.0001);
+	}
+	
+	@Test
+	public void deveEntenderLancesEmOrdemDecrescente() {
+		// cenario: 3 lances em ordem crescente
+			
+
+		Leilao leilao = new CriadorDeLeilao().para("Playstation 3 Novo")
+		.lance(maria,400.0)
+		.lance(jose,300.0)
+		.lance(joao,200.0)
+		.lance(jose,100.0)
+		.constroi();
+		
+		leiloeiro.avalia(leilao);
+
+		// comparando a saida com o esperado
+		double maiorEsperado = 400;
+		double menorEsperado = 100;
+
+		assertEquals(maiorEsperado, leiloeiro.getMaiorLance(), 0.0001);
+		assertEquals(menorEsperado, leiloeiro.getMenorLance(), 0.0001);
+	}
+
+	@Test
+	public void deveEntenderLancesEmOrdemCrescente() {
+		// cenario: 3 lances em ordem crescente
+		
+		Leilao leilao = new CriadorDeLeilao().para("Playstation 3 Novo")
+		.lance(maria,100.0)
+		.lance(jose,250.0)
+		.lance(joao,300.0)
+		.lance(jose,400.0)
+		.constroi();
+		
+		leiloeiro.avalia(leilao);
+
+		// comparando a saida com o esperado
+		double maiorEsperado = 400;
+		double menorEsperado = 100;
+
+		assertEquals(maiorEsperado, leiloeiro.getMaiorLance(), 0.0001);
+		assertEquals(menorEsperado, leiloeiro.getMenorLance(), 0.0001);
+	}
+	
+	@Test
+	public void deveDevolverValorMedioDosLances() {
+		// cenario: 3 lances em ordem crescente
+			
+
+		Leilao leilao = new CriadorDeLeilao().para("Playstation 3 Novo")
+		.lance(maria,250.0)
+		.lance(joao,300.0)
+		.lance(jose,400.0)
+		.lance(paulo,310.0)
+		.lance(pedro,120.0)
+		.constroi();
+		
+		leiloeiro.avalia(leilao);
+		
+		// comparando a saida com o esperado
+		double mediaEsperada = 276;
+
+		assertEquals(mediaEsperada, leiloeiro.getMedia(), 0.0001);
+		
+	}
+	
+	@Test
+	public void deveEncontrarTresMaioresCom5Lances(){
+				
+		Leilao leilao =new CriadorDeLeilao().para("Playstation 3 Novo")
+		.lance(maria,100.0)
+		.lance(jose,250.0)
+		.lance(joao,300.0)
+		.lance(jose,400.0)
+		.lance(joao,600.0)
+		.constroi();
+
+		leiloeiro.avalia(leilao);
+		
+		List<Lance> laces3Maiores = new ArrayList<Lance>();
+		laces3Maiores.add(new Lance(joao,600.0));
+		laces3Maiores.add(new Lance(jose,400.0));
+		laces3Maiores.add(new Lance(joao,300.0));
+
+		assertEquals(laces3Maiores, leiloeiro.getTresMaiores());
+	}
+	
+	@Test
+	public void deveEncontrarTresMaioresCom2Lances(){
+		
+		Leilao leilao =new CriadorDeLeilao().para("Playstation 3 Novo")
+		.lance(jose,400.0)
+		.lance(joao,600.0)
+		.constroi();
+
+		// executando a acao
+		leiloeiro.avalia(leilao);
+		
+		List<Lance> laces3Maiores = new ArrayList<Lance>();
+		laces3Maiores.add(new Lance(joao,600.0));
+		laces3Maiores.add(new Lance(jose,400.0));
+		
+		assertEquals(laces3Maiores, leiloeiro.getTresMaiores());
+	}
+	
+	@Test(expected=RuntimeException.class)
+	public void naoDeveAvaliarLeiloesSemNenhumLanceDado(){
+		
+		Leilao leilao =new CriadorDeLeilao().para("Playstation 3 Novo").constroi();		
+		
+		leiloeiro.avalia(leilao);
+	}
+	
+	
+}

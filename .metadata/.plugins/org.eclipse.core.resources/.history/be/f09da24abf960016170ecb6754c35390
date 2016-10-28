@@ -1,0 +1,45 @@
+package br.com.caelum.leilao.servico;
+
+import br.com.caelum.leilao.dominio.Lance;
+import br.com.caelum.leilao.dominio.Leilao;
+
+public class Avaliador {
+
+	private double maiorLance = Double.NEGATIVE_INFINITY;
+	private double menorLance = Double.POSITIVE_INFINITY;
+	
+	public void avalia(Leilao l){
+		for (Lance lance : l.getLances()) {
+			if(lance.getValor() > maiorLance) maiorLance = lance.getValor();
+			if(lance.getValor() < menorLance) menorLance = lance.getValor();
+		}
+	}
+
+	public double getMaiorLance() {
+		return maiorLance;
+	}
+
+	public void setMaiorLance(double maiorLance) {
+		this.maiorLance = maiorLance;
+	}
+
+	public double getMenorLance() {
+		return menorLance;
+	}
+
+	public void setMenorLance(double menorLance) {
+		this.menorLance = menorLance;
+	}
+
+	public double calculaMedia(Leilao l) {
+		double media = 0.0; 
+		for (Lance lance : l.getLances()) {
+			media += lance.getValor();
+		}
+		return media/l.getLances().size();
+	}
+
+	
+	
+}
+
