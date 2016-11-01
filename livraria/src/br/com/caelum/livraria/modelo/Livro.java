@@ -1,10 +1,12 @@
 package br.com.caelum.livraria.modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -12,7 +14,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Livro {
+public class Livro implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
@@ -21,22 +25,12 @@ public class Livro {
 	private String titulo;
 	private String isbn;
 	private double preco;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Calendar dataLancamento = Calendar.getInstance();
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	private List<Autor> autores = new ArrayList<Autor>();
 
-	private String genero;
-
-	public void setGenero(String genero) {
-	    this.genero = genero;
-	}
-
-	public String getGenero() {
-	    return genero;
-	}
-	
 	public List<Autor> getAutores() {
 		return autores;
 	}
@@ -88,10 +82,8 @@ public class Livro {
 		this.dataLancamento = dataLancamento;
 	}
 
-	public void removerAutorDoLivro(Autor autor) {
+	public void removeAutor(Autor autor) {
 		this.autores.remove(autor);
 	}
-
-	
 
 }

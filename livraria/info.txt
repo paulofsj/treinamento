@@ -1,0 +1,30 @@
+1 - Dentro de a pasta WebContent/META-INF crie um novo arquivo context.xml (ou abra o arquivo se já existe). Adicione o conteúdo abaixo:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="BeanManager"
+        auth="Container"
+        type="javax.enterprise.inject.spi.BeanManager"
+        factory="org.jboss.weld.resources.ManagerObjectFactory"/>
+</Context>
+Através dessa configuração o Tomcat registra o BeanManager do CDI quando sobir. O BeanManager é uma classe interna do CDI necessária para gerenciar objetos.
+
+2 - Na pasta WebContent/WEB-INF crie um novo arquivo beans.xml com o seguinte XML:
+
+<beans>
+</beans>
+Esse arquivo, praticamente vazio, representa o arquivo de configuração do CDI. Por enquanto não o usaremos, mas ele é precisa estar presente na pasta para o CDI funcionar.
+
+3 - Baixe o JAR da implementação do CDI:
+
+http://central.maven.org/maven2/org/jboss/weld/servlet/weld-servlet/2.3.2.Final/weld-servlet-2.3.2.Final.jar
+
+Coloque o JAR dentro da pasta WebContent/WEB-INF/lib
+
+4 - Agora altere os beans para utilizar as anotações do CDI. Faça uma alteração por vez, sempre testando e rodando Tomcat.
+
+a) Altera a classe AutorBean usando @Named e @ViewScoped, implemente a interface Serializable (pode ignorar o alerta do Eclipse):
+
+@Named
+@ViewScoped //javax.faces.view.ViewScoped
+public class AutorBean implements Serializable{

@@ -7,29 +7,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	@Id
 	@GeneratedValue
 	private Integer id;
 	private String email;
 	private String senha;
-
-	public String getSenha() {
-		return senha;
+	
+	public String getEmail() {
+		return email;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public Integer getId() {
+		public Integer getId() {
 		return id;
 	}
 
@@ -37,12 +33,12 @@ public class Usuario implements Serializable{
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 	

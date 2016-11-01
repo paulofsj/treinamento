@@ -124,7 +124,9 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="/home/acpm/workspace/treinamento/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ROOT" path="" reloadable="false"/><Context docBase="/home/acpm/workspace/treinamento/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/livraria" path="/livraria" reloadable="true" source="org.eclipse.jst.jee.server:livraria"/><Context docBase="/home/acpm/workspace/treinamento/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/serveletAssincrono" path="/serveletAssincrono" reloadable="true" source="org.eclipse.jst.jee.server:serveletAssincrono"/></Host>
+      <Context docBase="/home/acpm/workspace/treinamento/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ROOT" path="" reloadable="false"/><Context docBase="/home/acpm/workspace/treinamento/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/serveletAssincrono" path="/serveletAssincrono" reloadable="true" source="org.eclipse.jst.jee.server:serveletAssincrono"/><Context docBase="/home/acpm/workspace/treinamento/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/livraria2" path="/livraria2" reloadable="true" source="org.eclipse.jst.jee.server:livraria2"/><Context docBase="/home/acpm/workspace/treinamento/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/livraria" path="/livraria" reloadable="true" source="org.eclipse.jst.jee.server:livraria">
+	<Manager pathname=""/>
+</Context></Host>
     </Engine>
   </Service>
 </Server>
