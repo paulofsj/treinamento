@@ -1,0 +1,99 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="carrinho.css">
+	<link rel="stylesheet" type="text/css" href="css/libs/materialize.min.css" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="css/libs/google-fonts.css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+</head>
+<body>
+	<div class="carrinho container">
+		<h2>Carrinho entrega em Sao Paulo</h2>
+		<table class="bordered striped">
+			<thead>
+				<tr>
+					<td></td>
+					<td>Nome</td>
+					<td>Quantidade</td>
+					<td>Valor</td>
+					<td>Total</td>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img src="imagens/tablet.jpg"></td>
+					<td>Tablet miPad 18</td>
+					<td class="quantidade-itens">1</td>
+					<td>499.99</td>
+					<td class="item-total">499.99</td>
+					<td><a class="btn-floating btn-small waves-effect waves-light red"><i class="tiny material-icons delete">delete</i></a></td>
+				</tr>
+				<tr>
+					<td><img src="imagens/telefone.png"></td>
+					<td>Telefone miPhone 18</td>
+					<td class="quantidade-itens">2</td>
+					<td>199.99</td>
+					<td class="item-total">399.98</td>
+					<td><a class="btn-floating btn-small waves-effect waves-light red"><i class="tiny material-icons delete">delete</i></a></td>
+				</tr>
+				<tr>
+					<td><img src="imagens/sapato.jpg"></td>
+					<td>Sapato</td>
+					<td class="quantidade-itens">1</td>
+					<td>99.99</td>
+					<td  class="item-total">99.99</td>
+					<td><a class="btn-floating btn-small waves-effect waves-light red"><i class="tiny material-icons delete">delete</i></a></td>
+				</tr>
+				<tr>
+					<td><img src="imagens/monitor.jpg"></td>
+					<td>Monitor Sam 21</td>
+					<td class="quantidade-itens">1</td>
+					<td>299.00</td>
+					<td  class="item-total">299.00</td>
+					<td><a class="btn-floating btn-small waves-effect waves-light red"><i class="tiny material-icons delete">delete</i></a></td>
+				</tr>
+				<tr>
+					<td><img src="imagens/teclado.jpg"></td>
+					<td>Teclado com fio preto </td>
+					<td class="quantidade-itens">1</td>
+					<td>100.00</td>
+					<td  class="item-total">100.00</td>
+					<td><a class="btn-floating btn-small waves-effect waves-light red"><i class="tiny material-icons delete">delete</i></a></td>
+				</tr>
+				<tr>
+					<td><img src="imagens/mouse.jpg"></td>
+					<td>Mouse wireless</td>
+					<td class="quantidade-itens">1</td>
+					<td>199.00</td>
+					<td class="item-total">199.00</td>
+					<td><a class="btn-floating btn-small waves-effect waves-light red"><i class="tiny material-icons delete">delete</i></a></td>
+				</tr>
+				<tr>
+					<td><img src="imagens/camiseta.jpg"></td>
+					<td>Camiseta G</td>
+					<td class="quantidade-itens">1</td>
+					<td>25.00</td>
+					<td class="item-total">25.00</td>
+					<td><a class="btn-floating btn-small waves-effect waves-light red"><i class="tiny material-icons delete">delete</i></a></td>
+				</tr>
+			</tbody>
+		</table>
+	
+	</div>
+	<div class="container lefth">
+		<a id="botao-undo" class="btn-floating btn-small waves-effect waves-light red">
+                <i class="tiny material-icons">restore</i>
+        </a>
+	</div>
+	<div class="container lefth">
+        Valor total: R$<span id="valor-total">0</span>
+        <br/>
+        Quantidade de itens distintos: <span id="quantidade-de-itens"></span>
+    </div>
+	<script src="js/jquery.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/carrinho.js"></script>
+
+</body>
+</html>
