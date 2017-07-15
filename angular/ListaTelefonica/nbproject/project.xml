@@ -6,7 +6,7 @@
             <name>ListaTelefonica</name>
         </data>
         <libraries xmlns="http://www.netbeans.org/ns/cdnjs-libraries/1">
-            <library name="angular.js" version="1.6.4">
+            <library name="angular.js" version="1.6.5">
                 <file localPath="public_html/js/libs/angular.js/angular-animate.js" path="angular-animate.js"/>
                 <file localPath="public_html/js/libs/angular.js/angular-animate.min.js" path="angular-animate.min.js"/>
                 <file localPath="public_html/js/libs/angular.js/angular-animate.min.js.map" path="angular-animate.min.js.map"/>
@@ -46,6 +46,17 @@
                 <file localPath="public_html/js/libs/angular.js/angular.js" path="angular.js"/>
                 <file localPath="public_html/js/libs/angular.js/angular.min.js" path="angular.min.js"/>
                 <file localPath="public_html/js/libs/angular.js/angular.min.js.map" path="angular.min.js.map"/>
+                <file localPath="public_html/js/libs/angular.js/i18n/angular-locale_ar-iq.js" path="i18n/angular-locale_ar-iq.js"/>
+                <file localPath="public_html/js/libs/angular.js/i18n/angular-locale_ar-ma.js" path="i18n/angular-locale_ar-ma.js"/>
+                <file localPath="public_html/js/libs/angular.js/i18n/angular-locale_brx-in.js" path="i18n/angular-locale_brx-in.js"/>
+                <file localPath="public_html/js/libs/angular.js/i18n/angular-locale_brx.js" path="i18n/angular-locale_brx.js"/>
+                <file localPath="public_html/js/libs/angular.js/i18n/angular-locale_bs-cyrl-ba.js" path="i18n/angular-locale_bs-cyrl-ba.js"/>
+                <file localPath="public_html/js/libs/angular.js/i18n/angular-locale_bs-cyrl.js" path="i18n/angular-locale_bs-cyrl.js"/>
+                <file localPath="public_html/js/libs/angular.js/i18n/angular-locale_bs-latn-ba.js" path="i18n/angular-locale_bs-latn-ba.js"/>
+                <file localPath="public_html/js/libs/angular.js/i18n/angular-locale_bs-latn.js" path="i18n/angular-locale_bs-latn.js"/>
+                <file localPath="public_html/js/libs/angular.js/i18n/angular-locale_bs.js" path="i18n/angular-locale_bs.js"/>
+                <file localPath="public_html/js/libs/angular.js/i18n/angular-locale_ca-ad.js" path="i18n/angular-locale_ca-ad.js"/>
+                <file localPath="public_html/js/libs/angular.js/i18n/angular-locale_pt-br.js" path="i18n/angular-locale_pt-br.js"/>
             </library>
             <library name="twitter-bootstrap" version="3.3.7">
                 <file localPath="public_html/js/libs/twitter-bootstrap/css/bootstrap-theme.css" path="css/bootstrap-theme.css"/>
